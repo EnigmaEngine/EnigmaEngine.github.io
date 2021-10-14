@@ -24,6 +24,9 @@ url: https://enigmaengine.github.io # the base hostname & protocol for your site
 # When accessing variables, we get this repo instead of the docs repo.
 repository: EnigmaEngine/EnigmaEngine
 
+# Ensure relative links in the page work!
+baseurl: /
+
 show_downloads: true
 # google_analytics: [Your Google Analytics tracking ID]
 
