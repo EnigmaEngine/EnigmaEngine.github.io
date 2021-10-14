@@ -1,0 +1,33 @@
+{% include global.markdown %}
+
+<a id="forkme_banner" href="{{ repo.html_url }}/issues">Report an Issue</a>
+
+<a id="forkme_banner" href="{{ repo.html_url }}/issues">Report an Issue</a>
+
+<img
+    id="header-logo"
+    src="https://raw.githubusercontent.com/EnigmaEngine/EnigmaEngine/stable/art/EnigmaEngineFont.png"
+    alt="{{ site.title }}" />
+{% if isHome %}
+<h2 id="project_tagline">{{ site.github.project_tagline }}</h2>
+{% else %}
+{{page.url}}
+{% endif %}
+
+{% if site.show_downloads %}
+    <section id="downloads">
+        <div id="release"><a href="./changelog.html">{{ release.name }}</a></span></div>
+        {% if androidDownload %}
+        <a class="android_download_link" href="{{ androidDownload }}">Download for Linux</a>
+        {% endif %}
+        {% if linuxDownload %}
+        <a class="linux_download_link" href="{{ linuxDownload }}">Download for Linux</a>
+        {% endif %}
+        {% if macDownload %}
+        <a class="mac_download_link" href="{{ macDownload }}">Download for Linux</a>
+        {% endif %}
+        {% if windowsDownload %}
+        <a class="windows_download_link" href="{{ windowsDownload }}">Download for Windows</a>
+        {% endif %}        
+    </section>
+{% endif %}
