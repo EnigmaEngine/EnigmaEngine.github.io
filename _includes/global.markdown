@@ -22,3 +22,8 @@
 {% if page.url == "/index.html" or page.url == "/" %}
    {% assign isHome = true %}
 {% endif %}
+
+{% assign isDocumentation = false %}
+{% if page.url contains "/docs/" %}
+   {% assign isDocumentation = true %}
+{% endif %}

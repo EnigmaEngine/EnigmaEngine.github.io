@@ -1,4 +1,12 @@
+{% assign sidebar = true %}
+{% if include.sidebar == false %}
+{% assign sidebar = false %}
+{% endif %}
+{%if sidebar%}
+<div id="toc" class="sidebar">
+{% else %}
 <div id="toc">
+{% endif %}
 <h2>Documentation</h2>
 <ul>
     <li>

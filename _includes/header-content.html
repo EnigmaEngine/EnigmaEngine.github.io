@@ -1,8 +1,12 @@
 {% include global.markdown %}
 
-<a id="forkme_banner" href="{{ repo.html_url }}/issues">Report an Issue</a>
+{% if isHome %}
+<a id="doc_banner" href="/docs/">Documentation</a>
+{% else %}
+<a id="home_banner" href="/">Home</a>
+{% endif %}
 
-<a id="forkme_banner" href="{{ repo.html_url }}/issues">Report an Issue</a>
+<a id="issue_banner" href="{{ site.github.issues_url }}">Report an Issue</a>
 
 <img
     id="header-logo"
@@ -14,17 +18,18 @@
 {{page.url}}
 {% endif %}
 
+<!-- This is auto-populated from the Github repo! -->
 {% if site.show_downloads %}
     <section id="downloads">
-        <div id="release"><a href="./changelog.html">{{ release.name }}</a></span></div>
+        <div id="release"><a href="/changelog">{{ release.name }}</a></span></div>
         {% if androidDownload %}
-        <a class="android_download_link" href="{{ androidDownload }}">Download for Linux</a>
+        <a class="android_download_link" href="{{ androidDownload }}">Download for Android</a>
         {% endif %}
         {% if linuxDownload %}
         <a class="linux_download_link" href="{{ linuxDownload }}">Download for Linux</a>
         {% endif %}
         {% if macDownload %}
-        <a class="mac_download_link" href="{{ macDownload }}">Download for Linux</a>
+        <a class="mac_download_link" href="{{ macDownload }}">Download for MacOS</a>
         {% endif %}
         {% if windowsDownload %}
         <a class="windows_download_link" href="{{ windowsDownload }}">Download for Windows</a>

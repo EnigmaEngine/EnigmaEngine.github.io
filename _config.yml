@@ -22,10 +22,10 @@ title: Enigma Engine
 url: https://enigmaengine.github.io # the base hostname & protocol for your site, e.g. http://example.com
 
 # When accessing variables, we get this repo instead of the docs repo.
-# repository: EnigmaEngine/EnigmaEngine
+repository: EnigmaEngine/EnigmaEngine
 
-# Ensure relative links in the page work!
-baseurl: /
+# Ensure relative links in the page work! Don't use / that breaks shit.
+baseurl: ''
 
 permalink: pretty
 
@@ -34,14 +34,11 @@ relative_links:
   collections: false
 
 show_downloads: true
-# google_analytics: [Your Google Analytics tracking ID]
 
 # Build settings
 remote_theme: pages-themes/slate@v0.2.0
-# theme: minima
 plugins:
   - jekyll-remote-theme # add this line to the plugins list if you already have one
-  - jekyll-feed
 
 sass:
   sass_dir: _scss
@@ -53,15 +50,15 @@ sass:
 #
 # Excluded items can be processed by explicitly listing the directories or
 # their entries' file path in the `include:` list.
-#
-# exclude:
-#   - .sass-cache/
-#   - .jekyll-cache/
-#   - gemfiles/
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules/
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/

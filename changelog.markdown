@@ -4,8 +4,6 @@ layout: default
 
 {% include global.markdown %}
 
-[back](./)
-
 ## Changelog: {{release.name}}
-
+<!-- This is auto-populated from the Github repo! -->
 {{ release.body }}
