@@ -22,7 +22,7 @@ title: Enigma Engine
 url: https://enigmaengine.github.io # the base hostname & protocol for your site, e.g. http://example.com
 
 # When accessing variables, we get this repo instead of the docs repo.
-repository: EnigmaEngine/EnigmaEngine
+# repository: EnigmaEngine/EnigmaEngine
 
 # Ensure relative links in the page work!
 baseurl: /
