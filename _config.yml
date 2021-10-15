@@ -27,6 +27,12 @@ url: https://enigmaengine.github.io # the base hostname & protocol for your site
 # Ensure relative links in the page work!
 baseurl: /
 
+permalink: pretty
+
+relative_links:
+  enabled:     true
+  collections: false
+
 show_downloads: true
 # google_analytics: [Your Google Analytics tracking ID]
 
