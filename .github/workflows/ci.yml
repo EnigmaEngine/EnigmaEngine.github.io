@@ -23,12 +23,12 @@ jobs:
       #    git remote remove origin
       #    git remote add origin ${{ secrets.PAGES_REPO_NWO }}
       # Use GitHub Deploy Action to build and deploy to Github
-      - uses: jeffreytse/jekyll-deploy-action@v0.3.0
-        env:
-          PAGES_REPO_NWO: ${{ secrets.PAGES_REPO_NWO }} # Override the repo that Jekyll points to.
+      - uses: jeffreytse/jekyll-deploy-action@v0.3.1
+        # env:
+        #   PAGES_REPO_NWO: ${{ secrets.PAGES_REPO_NWO }} # Override the repo that Jekyll points to.
         with:
+          token: ${{ secrets.GITHUB_TOKEN }} # It's your Personal Access Token(PAT)
           provider: 'github'
-          token: ${{ secrets.GH_TOKEN }} # It's your Personal Access Token(PAT)
           branch: 'gh-pages'         # Default is gh-pages for github provider
           # jekyll_cfg: '_config.yml'  # Default is _config.yml
           # repository: ${{ secrets.PAGES_REPO_NWO }} # Default is current repository
