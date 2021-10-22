@@ -5,7 +5,7 @@ It is far more efficient for a game to store individual parts of an animated spr
 
 Sparrow v2 is the texture atlas format used by Flixel to load and render sprite sheets and animations. It provides a means for a single texture to contain multiple frames, which can later be referenced as needed. When Flixel needs an individual subtexture from a Texture Atlas, it will translate, rotate, scale, and clip the original image before rendering it, rather than loading each individual frame into memory separately. This is convenient to use for animations, but the individual textures can also be referenced as desired.
 
-In Friday Night Funkin' and mods, these sprite sheets are used for pretty much everything except Spirit and the Pixel noteskin. <!-- Why though????????? -->
+In Friday Night Funkin' and mods, these sprite sheets are used for nearly everything except Spirit's animations, which use a Packer atlas instead, and some background elements. <!-- We might document these later too. Not sure. - Prokube -->
 
 The information in this document was written to be informative for users of Enigma Engine, but also users of other engines (such as Kade Engine, Psyche Engine, or vanilla Funkin) and of developers for other games using the HaxeFlixel game engine.
 
@@ -90,7 +90,7 @@ See below for a fully valid example Texture Atlas, annotated with information on
     will be completely empty, but are necessary to ensure the explosion will animate properly.
 
     With frame attributes, you cut out the transparent parts completely when generating your texture,
-    then read them by defining the full size of the final image, as well as where in your image the texture should be positioned.
+    then insert them afterward by defining the full size of the final image, as well as where in your image the texture should be positioned.
 
     frameWidth and frameHeight define the width and height of the final output image (which should ideally be the same through the whole animation),
     and frameX and frameY determine the horizontal and vertical position of your texture in that image.
@@ -128,10 +128,10 @@ See below for a fully valid example Texture Atlas, annotated with information on
   -->
   <SubTexture name="RightArrow" x="32" y="0" width="64" height="64" flipX="true" />
   <!--
-    Flip the up arrow vertically to get a right arrow.
+    Flip the up arrow vertically to get a down arrow.
     See how we combine the two attributes to get the exact result we want? Easy!
   -->
-  <SubTexture name="UpArrow" x="32" y="0" width="64" height="64" rotated="true" flipY="true" />
+  <SubTexture name="DownArrow" x="32" y="0" width="64" height="64" rotated="true" flipY="true" />
 
 <!--
   Every tag in XML needs to be closed.
