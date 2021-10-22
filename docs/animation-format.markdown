@@ -128,7 +128,7 @@ See below for a fully valid example Texture Atlas, annotated with information on
   -->
   <SubTexture name="RightArrow" x="32" y="0" width="64" height="64" flipX="true" />
   <!--
-    Flip the up arrow vertically to get a down arrow.
+    Rotate the left arrow 90 degrees then flip it vertically to get a down arrow.
     See how we combine the two attributes to get the exact result we want? Easy!
   -->
   <SubTexture name="DownArrow" x="32" y="0" width="64" height="64" rotated="true" flipY="true" />
