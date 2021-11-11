@@ -5,7 +5,7 @@
 
 To create a basic health icon for your mod, perform the following steps.
 
-* Create a basic mod with a character, see the [Modding Basics]() guide.
+* [Create a custom character](/docs/custom-character).
 * Add an image to `images/icons/icon-<char>.png`, replacing `<char>` with the ID of your custom character.
 
 This image is expected to be a 2-icon spritesheet, of size 300x150, like what Kade Engine uses.

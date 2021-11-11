@@ -17,7 +17,7 @@ Currently, ModCore allows users to do the following:
 * Add new assets, which the engine will detect and load automatically.
 * Append to or modify files without breaking mods that overlap.
 
-This page has a quick breakdown on how to make a basic mod, along with a more detailed explanation and some pro tips. If you're looking to skip past the nitty gritty, simply f
+This page has a quick breakdown on how to make a basic mod, along with a more detailed explanation and some pro tips. If you're looking to skip past the nitty gritty, simply follow these steps to make a simple mod:
 
 ### Creating an Mod
 
@@ -25,10 +25,9 @@ The creation of every mod starts with these steps:
 
 1. Create a folder. The name should be lowercase, alphanumeric with dashes. You'll be able to specify a full title with symbols and stuff later.
     * If you downloaded Enigma Engine from the link above, place the mod folder within the `mods` directory next to `Enigma Engine.exe`.
-    * If you're building Enigma Engine from source
+    * If you're building Enigma Engine from source, place the mod in the `example_mods` folder. It will be automatically copied into the `mods` folder when you build.
         * Pro tip, if you're just making a basic mod, or even a more complex mod, you shouldn't need to modify the source or rebuild the game! Just download the game and put your content into the `mods` folder.
-2. Create a `mod.json` file inside your newly created mod folder. Paste in the following content, modifying the title, description, and author as necessary.
-
+2. Create a `_polymod_meta.json` file inside your newly created mod folder. Paste in the following content, modifying the title, description, and author as necessary.
 ```
 {
 	"title":"Example Mod",
@@ -39,10 +38,20 @@ The creation of every mod starts with these steps:
 	"license":"CC BY 4.0,MIT"
 }
 ```
-
- in the `mods` folder of your Enigma Engine install 
-
-Follow these steps to create an empty mo
+3. (Optional) Create a `_polymod_icon.png` file inside your newly created mod folder. This is the icon that will be displayed in the mod menu.
+4. Place your assets into the mod folder. For example, a simple Boyfriend skin mod would look like this once installed:
+|- Enigma Engine
+  |- Enigma.exe
+  |- mods
+    |- enaOverBf
+      |- shared
+        |- images
+          |- characters
+            |- BOYFRIEND.png
+            |- BOYFRIEND.xml
+      |- _polymod_meta.json
+      |- _polymod_icon.png
+5. You're done! The mod is now installed and ready to use. You can enable it by selecting "Play with all mods" or "Configure Mods" from the starting screen.
 
 ### Metadata
 
