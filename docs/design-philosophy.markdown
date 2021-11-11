@@ -19,6 +19,12 @@ The ideal end goal is that a person should be able to create a basic full week m
 
 The modding system provides a system of script hooks, FAR more powerful than Lua modcharts can be, with near-limitless potential to allow hooking into the game without recompiling it. Custom note types, custom menus, and more. 
 
+* **Free, open source software**
+
+Enigma Engine is free, open source software, and should be available to anyone who wants to make a rhythm game mod or use it for their personal projects. In the spirit of open source, Enigma Engine is distributed under the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html).
+
+[Contributions](https://github.com/EnigmaEngine/EnigmaEngine/pulls) and [bug reports](https://github.com/EnigmaEngine/EnigmaEngine/issues) are welcome, and we will to respond to them as quickly as possible.
+
 * **Accessible for users with special needs**
 
 Some users experience problems with flashing lights and colors and options should be available for them. Other users have special needs in terms of controls; while many use keyboard others use things like gamepads, guitar controllers, or special controllers built for rhythm games. Enigma should provide support for all of these.
