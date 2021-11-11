@@ -5,7 +5,7 @@ It is far more efficient for a game to store individual parts of an animated spr
 
 Sparrow v2 is the texture atlas format used by Flixel to load and render sprite sheets and animations. It provides a means for a single texture to contain multiple frames, which can later be referenced as needed. When Flixel needs an individual subtexture from a Texture Atlas, it will translate, rotate, scale, and clip the original image before rendering it, rather than loading each individual frame into memory separately. This is convenient to use for animations, but the individual textures can also be referenced as desired.
 
-In Friday Night Funkin' and mods, these sprite sheets are used for many things, including but not limited to sprites for characters and sprites for arrows.
+In Friday Night Funkin' and mods, these sprite sheets are used for nearly everything except Spirit's animations, which use a Packer atlas instead, and some background elements. <!-- We might document these later too. Not sure. - Prokube -->
 
 The information in this document was written to be informative for users of Enigma Engine, but also users of other engines (such as Kade Engine, Psyche Engine, or vanilla Funkin) and of developers for other games using the HaxeFlixel game engine.
 
@@ -28,7 +28,7 @@ A Sparrow v2 XML file contains a Texture Atlas, which contains the data for one 
 
 See below for a fully valid example Texture Atlas, annotated with information on every attribute supported by HaxeFlixel.
 
-```
+``` xml
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   The information above is important for the XML file format, but you shouldn't need to touch it.
@@ -40,7 +40,7 @@ See below for a fully valid example Texture Atlas, annotated with information on
   <!--
     The syntax with the < ! - - followed by - - > (without spaces),
     are used to denote a comment, which will be ignored when the atlas is parsed.
-    The below comment is automatically added by Adobe Animate and can be safely ignored or removed.
+    The below comment is automatically added by Adobe Animate and can be safely ignored or removed. (stubid watermark let me mod in peace)
   -->
 	<!-- Created with Adobe Animate version 21.0.1.37179 -->
 	<!-- http://www.adobe.com/products/animate.html -->
@@ -58,40 +58,39 @@ See below for a fully valid example Texture Atlas, annotated with information on
   -->
   <SubTexture name="Forward0000" x="0" y="368" width="39" height="44"/>
   <SubTexture name="Forward0001" x="0" y="368" width="39" height="44"/>
-	<SubTexture name="Forward0002" x="39" y="368" width="39" height="44"/>
-	<SubTexture name="Forward0003" x="39" y="368" width="39" height="44"/>
+  <SubTexture name="Forward0002" x="39" y="368" width="39" height="44"/>
+  <SubTexture name="Forward0003" x="39" y="368" width="39" height="44"/>
 
   <!--
     Fun fact, an easy way to create an animation which is the reverse or remixing of another one is to
     copy the original animation, rearrange the frames as desired, then change the frame numbers
     such that they are in order, like so:
   -->
-	<SubTexture name="Backward0000" x="39" y="368" width="39" height="44"/>
-	<SubTexture name="Backward0001" x="39" y="368" width="39" height="44"/>
+  <SubTexture name="Backward0000" x="39" y="368" width="39" height="44"/>
+  <SubTexture name="Backward0001" x="39" y="368" width="39" height="44"/>
   <SubTexture name="Backward0002" x="0" y="368" width="39" height="44"/>
   <SubTexture name="Backward0003" x="0" y="368" width="39" height="44"/>
 
   <!--
     Sub-textures can partially or fully overlap each other without conflicts.
   -->
-	<SubTexture name="Testing" x="50" y="50" width="100" height="100" />
-	<SubTexture name="MoreTesting" x="75" y="75" width="25" height="25"/>
+  <SubTexture name="Testing" x="50" y="50" width="100" height="100" />
+  <SubTexture name="MoreTesting" x="75" y="75" width="25" height="25"/>
 
   <!--
-    HaxeFlixel supports many additional attributes on subtextures, that grant a fine degree of control
-    over how an individual frame appears. When used properly, this can provide massive memory savings,
-    since having a large graphic makes your game use more memory than, and therefore run slower than,
-    a smaller graphic.
+    HaxeFlixel supports many additional attributes on subtextures that grant a fine degree of control
+    over how an individual frame appears. When used properly, this can save massive amounts of memory,
+    since having a large graphic makes your game use more memory than a smaller graphic.
   -->
 
   <!--
-    The frame attributes allow you to define a larger frame which your subtexture appears in.
+    A frame's attributes allow you to define a larger frame in which your subtexture appears.
 
-    Think of the example of an explosion animation. At certain parts of the animation, parts of the texture
+    Think of an explosion animation. At certain parts of the animation, parts of the texture
     will be completely empty, but are necessary to ensure the explosion will animate properly.
 
-    With the frame attributes, you cut out the transparent parts completely when generating your texture,
-    then readd them by defining the full size of the final image, as well as where in your image the texture should be positioned.
+    With frame attributes, you cut out the transparent parts completely when generating your texture,
+    then insert them afterward by defining the full size of the final image, as well as where in your image the texture should be positioned.
 
     frameWidth and frameHeight define the width and height of the final output image (which should ideally be the same through the whole animation),
     and frameX and frameY determine the horizontal and vertical position of your texture in that image.
@@ -127,12 +126,12 @@ See below for a fully valid example Texture Atlas, annotated with information on
   <!--
     Flip the left arrow horizontally to get a right arrow.
   -->
-  <SubTexture name="LeftArrow" x="32" y="0" width="64" height="64" flipX="true" />
+  <SubTexture name="RightArrow" x="32" y="0" width="64" height="64" flipX="true" />
   <!--
-    Flip the up arrow vertically to get a right arrow.
+    Rotate the left arrow 90 degrees then flip it vertically to get a down arrow.
     See how we combine the two attributes to get the exact result we want? Easy!
   -->
-  <SubTexture name="UpArrow" x="32" y="0" width="64" height="64" rotated="true" flipY="true" />
+  <SubTexture name="DownArrow" x="32" y="0" width="64" height="64" rotated="true" flipY="true" />
 
 <!--
   Every tag in XML needs to be closed.
@@ -143,21 +142,24 @@ See below for a fully valid example Texture Atlas, annotated with information on
 
 To recap, the valid attributes of a `SubTexture` are:
 
-* `name`: The name for this subtexture that the game can reference.
+* `name`: The name for the subtexture that the game will reference.
   - Required attribute.
   - For animations, use the correct prefix then suffix with numbers.
+
 * `x`: The horizontal position in the image to pick the subtexture from.
   - Required attribute.
   - Cannot be further than the edge of the image.
 * `y`: The vertical position in the image to pick the subtexture from.
   - Required attribute.
   - Cannot be further than the edge of the image.
+
 * `width`: The horizontal size of the subtexture.
   - Required attribute.
   - Cannot be larger than the original texture.
 * `height`: The vertical size of the subtexture.
   - Required attribute.
   - Cannot be larger than the original texture.
+
 * `frameX`: The horizontal offset to move the sprite to in the final rendered texture.
   - Optional attribute.
   - Mainly used to add whitespace to an image.
@@ -170,6 +172,7 @@ To recap, the valid attributes of a `SubTexture` are:
 * `frameHeight`: The full height of the final rendered texture.
   - Optional attribute.
   - Mainly used to add whitespace to an image.
+
 * `flipX`: Set to `true` to flip the resulting image horizontally.
   - Optional attribute.
 * `flipY`: Set to `true` to flip the resulting image vertically.
@@ -184,7 +187,7 @@ In order to use a sprite sheet in HaxeFlixel, you simply need to create an FlxFr
 
 Once they're generated, simply assign them to a sprite and add animations based on the frame names (or prefix for frame names) you provide. For animated/sprite-based graphics, rather than use the [FlxSprite.loadGraphic()](https://api.haxeflixel.com/flixel/FlxSprite.html#loadGraphic) function, you should instead assign to `FlxSprite.frames` like so:
 
-```
+``` haxe
 var spr = new FlxSprite(x, y);
 spr.frames = FlxAtlasFrames.fromSparrow(pngPath, xmlPath);
 // You can specify all the frames by individual 
