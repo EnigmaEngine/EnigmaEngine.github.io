@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,maximum-scale=2">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/style.css?v=83aa5cf22049aedb288d193c8cd5cbb9aeed959a">
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Enigma Engine | A special repository to host the Github.io page.</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Enigma Engine" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A special repository to host the Github.io page." />
+<meta property="og:description" content="A special repository to host the Github.io page." />
+<link rel="canonical" href="https://enigmaengine.github.io/docs/custom-title-screen/" />
+<meta property="og:url" content="https://enigmaengine.github.io/docs/custom-title-screen/" />
+<meta property="og:site_name" content="Enigma Engine" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Enigma Engine" />
+<script type="application/ld+json">
+{"url":"https://enigmaengine.github.io/docs/custom-title-screen/","description":"A special repository to host the Github.io page.","@type":"WebPage","headline":"Enigma Engine","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <!-- TODO: Change this to latest release -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a id="home_banner" href="/">Home</a>
+
+
+<a id="issue_banner" href="https://github.com/EnigmaEngine/EnigmaEngine.github.io/issues">Report an Issue</a>
+
+<img
+    id="header-logo"
+    src="https://raw.githubusercontent.com/EnigmaEngine/EnigmaEngine/stable/art/EnigmaEngineFont.png"
+    alt="Enigma Engine" />
+
+/docs/custom-title-screen/
+
+
+<!-- This is auto-populated from the Github repo! -->
+
+    <section id="downloads">
+        <div id="release"><a href="/changelog"></a></span></div>
+        
+        
+        
+                
+    </section>
+
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        
+<div id="toc" class="sidebar">
+
+
+<h2>Documentation</h2>
+
+<ul>
+  <li>
+    <a href="/docs/installing">Installing Enigma Engine</a>
+    <ul>
+      <li>
+        <a href="/docs/adding-mods">Add and Configure Mods</a>
+      </li>
+      <li>
+        <a href="/docs/mod-showcase">Mod Showcase</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="/docs/modding-basics">Modding Basics</a>
+    <ul>
+        <li>
+          <a href="/docs/custom-characters">Custom Characters</a>
+        </li>
+        <ul>
+          <li>
+            <a href="/docs/custom-health-icons">Custom Health Icons</a>
+          </li>
+        </ul>
+        <li>
+          <a href="/docs/custom-songs">Custom Songs</a>
+        </li>
+        <li>
+          <a href="/docs/custom-stages">Custom Stages</a>
+        </li>
+        <li>
+          <a href="/docs/custom-story-weeks">Custom Story Weeks</a>
+        </li>
+        <li>
+          <a href="/docs/custom-title-screen">Custom Title Screen</a>
+        </li>
+    </ul>
+  </li>
+  <li>
+    <a href="/docs/design-philosophy">Design Philosophy</a>
+  </li>
+  <li>
+    Technical Information
+    <ul>
+      <li><a href="/docs/building-from-source">Building from Source</a></li>
+      <li><a href="/docs/development-tools">Development Tools</a></li>
+      <li><a href="/docs/build-troubleshooting">Build Troubleshooting</a></li>
+      <li>
+        <a href="/docs/animation-format">Animation File Format (Sparrow v2)</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+</div>
+
+<h1 id="modding-guide-custom-title-screen">Modding Guide: Custom Title Screen</h1>
+
+<p>The title screen is highly customizable, and almost fully driven by a single data file.</p>
+
+<p>Follow these steps:</p>
+
+<ol>
+  <li>
+    <p>Prepare any custom assets you want for the custom title. This could include a custom <code class="language-plaintext highlighter-rouge">logoBumpin</code>, a custom <code class="language-plaintext highlighter-rouge">gfDanceTitle</code>, a custom <code class="language-plaintext highlighter-rouge">titleEnter</code> (the blinking text at the bottom), custom credits graphics, or custom backgrounds for the title screen or credits.</p>
+  </li>
+  <li>
+    <p>Copy the <a href="https://github.com/EnigmaEngine/EnigmaEngine/blob/develop/assets/preload/data/titleScreen.json">default title screen file</a> and paste it to <code class="language-plaintext highlighter-rouge">mods/&lt;mod-id&gt;/data/titleScreen.json</code>. Modify the content as needed.</p>
+  </li>
+</ol>
+
+<h2 id="title-screen-data-format">Title Screen Data Format</h2>
+
+<p>The title screen is specified in a JSON file containing the following attributes:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">_comment</code> : n ignored attribute and can be used to provide documentation to any users reading the file.</li>
+  <li><code class="language-plaintext highlighter-rouge">creditsBackground</code> : specifies the background of the intro credits. It is either a hex color string (like <code class="language-plaintext highlighter-rouge">#00FF00</code>) or the name of a graphic (relative to either <code class="language-plaintext highlighter-rouge">assets/preload/images</code> or <code class="language-plaintext highlighter-rouge">mods/&lt;mod-id&gt;/images</code>).</li>
+  <li><code class="language-plaintext highlighter-rouge">titleBackground</code> : specifies the background of the title screen. It is either a hex color string (like <code class="language-plaintext highlighter-rouge">#00FF00</code>) or the name of a graphic (relative to either <code class="language-plaintext highlighter-rouge">assets/preload/images</code> or <code class="language-plaintext highlighter-rouge">mods/&lt;mod-id&gt;/images</code>).</li>
+  <li><code class="language-plaintext highlighter-rouge">beatDropMs</code> : If the user presses ENTER to skip the intro, the music is skipped to the proper position to match. Use this to set the time it should skip to, in ms. Set the value to <code class="language-plaintext highlighter-rouge">-1</code> to disable skipping entirely.</li>
+  <li><code class="language-plaintext highlighter-rouge">bpm</code> : Beats per minute of the song.
+    <ul>
+      <li>Affects the speed of the intro credits and of the animations on the title screen.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">gf</code> : Attributes that control how the <code class="language-plaintext highlighter-rouge">gfDanceTitle</code> sprite is rendered. Useful if you have replaced it with a custom one but need to move it around.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">x</code> : The horizontal position.</li>
+      <li><code class="language-plaintext highlighter-rouge">y</code> : The vertical position.</li>
+      <li><code class="language-plaintext highlighter-rouge">scale</code> : The size.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">logoBumpin</code> : Attributes that control how the <code class="language-plaintext highlighter-rouge">logoBumpin</code> sprite is rendered. Useful if you have replaced it with a custom one but need to move it around.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">x</code> : The horizontal position.</li>
+      <li><code class="language-plaintext highlighter-rouge">y</code> : The vertical position.</li>
+      <li><code class="language-plaintext highlighter-rouge">scale</code> : The size.</li>
+      <li><code class="language-plaintext highlighter-rouge">angle</code> : Aside from playing its animation, the logo also rotates back and forth.</li>
+      <li><code class="language-plaintext highlighter-rouge">duration</code> : The animation moves from <code class="language-plaintext highlighter-rouge">-angle</code> to <code class="language-plaintext highlighter-rouge">+angle</code> over <code class="language-plaintext highlighter-rouge">duration</code> seconds, then goes back.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">credits</code> : An array of actions to perform at each beat of the song during the intro credits. This can include displaying text or graphics.
+    <ul>
+      <li>Each element of credits is either a single action object, or an array of action objects. For each beat of the song, the corresponding  entry (or entries) are read and the actions are performed.</li>
+      <li>Each credits element has some of the following attributes:
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">action</code> : The action to perform. Can be <code class="language-plaintext highlighter-rouge">addText</code>, <code class="language-plaintext highlighter-rouge">clearText</code>, <code class="language-plaintext highlighter-rouge">addWackyText</code>, <code class="language-plaintext highlighter-rouge">setTextOffset</code>, <code class="language-plaintext highlighter-rouge">reloadWackyText</code>, <code class="language-plaintext highlighter-rouge">setGraphic</code>, <code class="language-plaintext highlighter-rouge">clearGraphic</code>, <code class="language-plaintext highlighter-rouge">setBackground</code>, or <code class="language-plaintext highlighter-rouge">wait</code>.</li>
+          <li><code class="language-plaintext highlighter-rouge">value</code> : If the action takes a single argument, specify it here.</li>
+          <li><code class="language-plaintext highlighter-rouge">values</code> : If the action takes multiple arguments, specify it here.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>Below are examples of all the credits actions:</p>
+<div class="language-jsonc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Note that Enigma utilizes a custom JSON parser which provides support for comments.</span><span class="w">
+</span><span class="c1">// You don't need to be picky with your JSON syntax either. Missing commas are fine.</span><span class="w">
+</span><span class="nl">"credits"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="c1">// This action will be performed at the first beat of the song.</span><span class="w">
+    </span><span class="c1">// addText adds text to the credits screen.</span><span class="w">
+    </span><span class="c1">// It takes multiple arguments, one for each line of text to be added.</span><span class="w">
+    </span><span class="nl">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"addText"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Hello, world!"</span><span class="p">,</span><span class="w"> </span><span class="s2">"This is a test."</span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="c1">// This action will be performed at the second beat of the song.</span><span class="w">
+    </span><span class="c1">// wait simply does nothing for a beat.</span><span class="w">
+    </span><span class="c1">// If this action weren't here, the next action would be performed on the second beat instead of the third.</span><span class="w">
+    </span><span class="nl">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wait"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="c1">// Add more text</span><span class="w">
+    </span><span class="nl">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"addText"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Foobar"</span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">[</span><span class="w">
+    </span><span class="c1">// We are performing multiple actions this beat. Note the array these actions were put into to group them together.</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="c1">// This action clears all credits text on screen. It takes no arguments.</span><span class="w">
+      </span><span class="nl">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clearText"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="c1">// setTextOffset sets the vertical offset of the text.</span><span class="w">
+      </span><span class="c1">// It takes a single argument, the value to offset by.</span><span class="w">
+      </span><span class="c1">// The offset change lasts until you change it again.</span><span class="w">
+      </span><span class="nl">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"setTextOffset"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">-135</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="c1">// Add some credits text. It will be offset by the setTextOffset value."</span><span class="w">
+      </span><span class="nl">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"addText"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"We made this mod."</span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wait"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="c1">// setGraphic displays a graphic over the title screen!</span><span class="w">
+    </span><span class="c1">// It takes one argument: The name of a graphic (relative to either `assets/preload/images` or `mods/&lt;mod-id&gt;/images`).</span><span class="w">
+    </span><span class="c1">// If you make an animation for the graphic and title it 'Animation' in the XML file, it'll play when you set the graphic. Pretty cool.</span><span class="w">
+    </span><span class="c1">// Remember, you can only display one graphic at a time, and you can't reposition it.</span><span class="w">
+    </span><span class="nl">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"setGraphic"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"daCrew"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="c1">// Remember, if the credits are going by too fast, add wait actions.</span><span class="w">
+    </span><span class="c1">// If they are going too slow, perform multiple actions in one beat.</span><span class="w">
+    </span><span class="c1">// If they are moving off-beat with your intro song's tempo, remember to change the BPM.</span><span class="w">
+    </span><span class="nl">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wait"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="c1">// clearGraphic removes the graphic you added earlier with setGraphic.</span><span class="w">
+      </span><span class="nl">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clearGraphic"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="c1">// Here we again perform more than one action per beat.</span><span class="w">
+      </span><span class="c1">// addWackyText adds a randomly selected entry from introText.txt to the screen.</span><span class="w">
+      </span><span class="c1">// It takes multiple arguments; an array of which lines of the entry to display.</span><span class="w">
+      </span><span class="c1">// You can display more than one line at once and you can display more than two lines total, unlike the vanilla game.</span><span class="w">
+      </span><span class="nl">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"addWackyText"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="c1">// setBackground lets you change the background. It takes one value.</span><span class="w">
+      </span><span class="c1">// It is either a hex color string (like `#00FF00`)</span><span class="w">
+      </span><span class="c1">// or the name of a graphic (relative to either `assets/preload/images` or `mods/&lt;mod-id&gt;/images`).</span><span class="w">
+      </span><span class="nl">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"setBackground"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#330000"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clearText"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="c1">// When the title sequence first starts, a random entry from introText.txt is chosen.</span><span class="w">
+      </span><span class="c1">// If you want to display another entry, you can usse the reloadWackyText action to choose a new one.</span><span class="w">
+      </span><span class="nl">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reloadWackyText"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"addWackyText"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<p>If you want a good reference, check out the implementation in the <a href="https://github.com/EnigmaEngine/modCore-Tricky-Mod">Tricky Mod example</a>, which utilizes custom graphics and text to implement <a href="https://www.youtube.com/watch?v=bb1YqSiVDQY">the title screen</a>.</p>
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+  </body>
+</html>

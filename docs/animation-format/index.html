@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,maximum-scale=2">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/style.css?v=83aa5cf22049aedb288d193c8cd5cbb9aeed959a">
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Enigma Engine | A special repository to host the Github.io page.</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Enigma Engine" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A special repository to host the Github.io page." />
+<meta property="og:description" content="A special repository to host the Github.io page." />
+<link rel="canonical" href="https://enigmaengine.github.io/docs/animation-format/" />
+<meta property="og:url" content="https://enigmaengine.github.io/docs/animation-format/" />
+<meta property="og:site_name" content="Enigma Engine" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Enigma Engine" />
+<script type="application/ld+json">
+{"url":"https://enigmaengine.github.io/docs/animation-format/","description":"A special repository to host the Github.io page.","@type":"WebPage","headline":"Enigma Engine","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <!-- TODO: Change this to latest release -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a id="home_banner" href="/">Home</a>
+
+
+<a id="issue_banner" href="https://github.com/EnigmaEngine/EnigmaEngine.github.io/issues">Report an Issue</a>
+
+<img
+    id="header-logo"
+    src="https://raw.githubusercontent.com/EnigmaEngine/EnigmaEngine/stable/art/EnigmaEngineFont.png"
+    alt="Enigma Engine" />
+
+/docs/animation-format/
+
+
+<!-- This is auto-populated from the Github repo! -->
+
+    <section id="downloads">
+        <div id="release"><a href="/changelog"></a></span></div>
+        
+        
+        
+                
+    </section>
+
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        
+<div id="toc" class="sidebar">
+
+
+<h2>Documentation</h2>
+
+<ul>
+  <li>
+    <a href="/docs/installing">Installing Enigma Engine</a>
+    <ul>
+      <li>
+        <a href="/docs/adding-mods">Add and Configure Mods</a>
+      </li>
+      <li>
+        <a href="/docs/mod-showcase">Mod Showcase</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="/docs/modding-basics">Modding Basics</a>
+    <ul>
+        <li>
+          <a href="/docs/custom-characters">Custom Characters</a>
+        </li>
+        <ul>
+          <li>
+            <a href="/docs/custom-health-icons">Custom Health Icons</a>
+          </li>
+        </ul>
+        <li>
+          <a href="/docs/custom-songs">Custom Songs</a>
+        </li>
+        <li>
+          <a href="/docs/custom-stages">Custom Stages</a>
+        </li>
+        <li>
+          <a href="/docs/custom-story-weeks">Custom Story Weeks</a>
+        </li>
+        <li>
+          <a href="/docs/custom-title-screen">Custom Title Screen</a>
+        </li>
+    </ul>
+  </li>
+  <li>
+    <a href="/docs/design-philosophy">Design Philosophy</a>
+  </li>
+  <li>
+    Technical Information
+    <ul>
+      <li><a href="/docs/building-from-source">Building from Source</a></li>
+      <li><a href="/docs/development-tools">Development Tools</a></li>
+      <li><a href="/docs/build-troubleshooting">Build Troubleshooting</a></li>
+      <li>
+        <a href="/docs/animation-format">Animation File Format (Sparrow v2)</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+</div>
+
+<h1 id="sparrow-v2---animation-texture-atlas-format">Sparrow v2 - Animation Texture Atlas Format</h1>
+
+<p>It is far more efficient for a game to store individual parts of an animated sprite, or separate sprites which are often used in similar parts of a user interface, together in a single PNG texture file. However, in order for the game to know HOW to split up this texture, additional metadata is needed.</p>
+
+<p>Sparrow v2 is the texture atlas format used by Flixel to load and render sprite sheets and animations. It provides a means for a single texture to contain multiple frames, which can later be referenced as needed. When Flixel needs an individual subtexture from a Texture Atlas, it will translate, rotate, scale, and clip the original image before rendering it, rather than loading each individual frame into memory separately. This is convenient to use for animations, but the individual textures can also be referenced as desired.</p>
+
+<p>In Friday Night Funkin’ and mods, these sprite sheets are used for nearly everything except Spirit’s animations, which use a Packer atlas instead, and some background elements. <!-- We might document these later too. Not sure. - Prokube --></p>
+
+<p>The information in this document was written to be informative for users of Enigma Engine, but also users of other engines (such as Kade Engine, Psyche Engine, or vanilla Funkin) and of developers for other games using the HaxeFlixel game engine.</p>
+
+<h2 id="creating-and-modifying-sparrow-v2-texture-atlas-files">Creating and Modifying Sparrow v2 Texture Atlas Files</h2>
+
+<p>You can create a Sparrow v2 texture atlas for what you need using one of the following tools:</p>
+
+<ul>
+  <li><strong>Adobe Animate</strong>: This is the most common method. If you have an existing animation, you can simply export it (see the directions below). However, it requires a paid subscription (or <a href="https://www.youtube.com/watch?v=i8ju_10NkGY">sailing the high seas</a>).</li>
+  <li><strong><a href="https://github.com/UncertainProd/FnF-Spritesheet-and-XML-Maker/releases">FNF Spritesheet and XML Generator</a></strong>: If you have a set of individual images you want to use, you can combine them with this program. Includes useful tools like duplicate frame detection and clipping out transparent pixels to make the image smaller (which means better performance for your users!).</li>
+  <li><strong><a href="https://www.codeandweb.com/texturepacker">TexturePacker</a></strong>: Spritesheet building program similar to the FNF XML Generator, but it’s a paid program with more features.</li>
+  <li><strong>Manual Editing</strong>: I wouldn’t recommend building an XML from scratch, but if you just need to tweak something (one frame is a little too high, or shows a bit of the next frame on one side) it’s much easier to do so this way. See the directions below.</li>
+</ul>
+
+<h3 id="creating-a-texture-atlas-in-adobe-animate">Creating a Texture Atlas in Adobe Animate</h3>
+
+<h2 id="manual-editing-a-breakdown-of-the-sparrow-v2-specification">Manual Editing: A Breakdown of the Sparrow v2 Specification</h2>
+
+<p>To edit a Sparrow v2 XML file, simply open it in any text editor. Notepad works but a program like <a href="https://notepad-plus-plus.org/downloads/">Notepad++</a> or <a href="https://code.visualstudio.com/">Visual Studio Code</a> is much more user friendly for this purpose, since they provide syntax highlighting and make it clear if you’ve made a mistake (like forgetting a quotation mark).</p>
+
+<p>A Sparrow v2 XML file contains a Texture Atlas, which contains the data for one or more subtextures. Each of these subtextures can be accessed by the game.</p>
+
+<p>See below for a fully valid example Texture Atlas, annotated with information on every attribute supported by HaxeFlixel.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="c">&lt;!--
+  The information above is important for the XML file format, but you shouldn't need to touch it.
+  Below, we can see that we use a tag to define a Texture Atlas pointing to an image at the path `alphabet.png`.
+  In HaxeFlixel in general (and Friday Night Funkin' specifically), the image is loaded separately from the XML,
+  and thus the `imagePath` attribute is ignored.
+--&gt;</span>
+<span class="nt">&lt;TextureAtlas</span> <span class="na">imagePath=</span><span class="s">"alphabet.png"</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!--
+    The syntax with the &lt; ! - - followed by - - &gt; (without spaces),
+    are used to denote a comment, which will be ignored when the atlas is parsed.
+    The below comment is automatically added by Adobe Animate and can be safely ignored or removed. (stubid watermark let me mod in peace)
+  --&gt;</span>
+	<span class="c">&lt;!-- Created with Adobe Animate version 21.0.1.37179 --&gt;</span>
+	<span class="c">&lt;!-- http://www.adobe.com/products/animate.html --&gt;</span>
+
+  <span class="c">&lt;!--
+    Here we have a basic subtexture.
+    From the top-left of the image, it moves 12 pixels to the left, then 368 pixels down,
+    then takes a box 39 pixels wide and 44 pixels tall, and uses that as the sprite.
+  --&gt;</span>
+	<span class="nt">&lt;SubTexture</span> <span class="na">name=</span><span class="s">"Test"</span> <span class="na">x=</span><span class="s">"12"</span> <span class="na">y=</span><span class="s">"368"</span> <span class="na">width=</span><span class="s">"39"</span> <span class="na">height=</span><span class="s">"44"</span> <span class="nt">/&gt;</span>
+	
+  <span class="c">&lt;!--
+    To create an animation, define multiple images with the same prefix on the name,
+    and then a number indicating the frame number in the animation (starting at 0).
+  --&gt;</span>
+  <span class="nt">&lt;SubTexture</span> <span class="na">name=</span><span class="s">"Forward0000"</span> <span class="na">x=</span><span class="s">"0"</span> <span class="na">y=</span><span class="s">"368"</span> <span class="na">width=</span><span class="s">"39"</span> <span class="na">height=</span><span class="s">"44"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;SubTexture</span> <span class="na">name=</span><span class="s">"Forward0001"</span> <span class="na">x=</span><span class="s">"0"</span> <span class="na">y=</span><span class="s">"368"</span> <span class="na">width=</span><span class="s">"39"</span> <span class="na">height=</span><span class="s">"44"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;SubTexture</span> <span class="na">name=</span><span class="s">"Forward0002"</span> <span class="na">x=</span><span class="s">"39"</span> <span class="na">y=</span><span class="s">"368"</span> <span class="na">width=</span><span class="s">"39"</span> <span class="na">height=</span><span class="s">"44"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;SubTexture</span> <span class="na">name=</span><span class="s">"Forward0003"</span> <span class="na">x=</span><span class="s">"39"</span> <span class="na">y=</span><span class="s">"368"</span> <span class="na">width=</span><span class="s">"39"</span> <span class="na">height=</span><span class="s">"44"</span><span class="nt">/&gt;</span>
+
+  <span class="c">&lt;!--
+    Fun fact, an easy way to create an animation which is the reverse or remixing of another one is to
+    copy the original animation, rearrange the frames as desired, then change the frame numbers
+    such that they are in order, like so:
+  --&gt;</span>
+  <span class="nt">&lt;SubTexture</span> <span class="na">name=</span><span class="s">"Backward0000"</span> <span class="na">x=</span><span class="s">"39"</span> <span class="na">y=</span><span class="s">"368"</span> <span class="na">width=</span><span class="s">"39"</span> <span class="na">height=</span><span class="s">"44"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;SubTexture</span> <span class="na">name=</span><span class="s">"Backward0001"</span> <span class="na">x=</span><span class="s">"39"</span> <span class="na">y=</span><span class="s">"368"</span> <span class="na">width=</span><span class="s">"39"</span> <span class="na">height=</span><span class="s">"44"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;SubTexture</span> <span class="na">name=</span><span class="s">"Backward0002"</span> <span class="na">x=</span><span class="s">"0"</span> <span class="na">y=</span><span class="s">"368"</span> <span class="na">width=</span><span class="s">"39"</span> <span class="na">height=</span><span class="s">"44"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;SubTexture</span> <span class="na">name=</span><span class="s">"Backward0003"</span> <span class="na">x=</span><span class="s">"0"</span> <span class="na">y=</span><span class="s">"368"</span> <span class="na">width=</span><span class="s">"39"</span> <span class="na">height=</span><span class="s">"44"</span><span class="nt">/&gt;</span>
+
+  <span class="c">&lt;!--
+    Sub-textures can partially or fully overlap each other without conflicts.
+  --&gt;</span>
+  <span class="nt">&lt;SubTexture</span> <span class="na">name=</span><span class="s">"Testing"</span> <span class="na">x=</span><span class="s">"50"</span> <span class="na">y=</span><span class="s">"50"</span> <span class="na">width=</span><span class="s">"100"</span> <span class="na">height=</span><span class="s">"100"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;SubTexture</span> <span class="na">name=</span><span class="s">"MoreTesting"</span> <span class="na">x=</span><span class="s">"75"</span> <span class="na">y=</span><span class="s">"75"</span> <span class="na">width=</span><span class="s">"25"</span> <span class="na">height=</span><span class="s">"25"</span><span class="nt">/&gt;</span>
+
+  <span class="c">&lt;!--
+    HaxeFlixel supports many additional attributes on subtextures that grant a fine degree of control
+    over how an individual frame appears. When used properly, this can save massive amounts of memory,
+    since having a large graphic makes your game use more memory than a smaller graphic.
+  --&gt;</span>
+
+  <span class="c">&lt;!--
+    A frame's attributes allow you to define a larger frame in which your subtexture appears.
+
+    Think of an explosion animation. At certain parts of the animation, parts of the texture
+    will be completely empty, but are necessary to ensure the explosion will animate properly.
+
+    With frame attributes, you cut out the transparent parts completely when generating your texture,
+    then insert them afterward by defining the full size of the final image, as well as where in your image the texture should be positioned.
+
+    frameWidth and frameHeight define the width and height of the final output image (which should ideally be the same through the whole animation),
+    and frameX and frameY determine the horizontal and vertical position of your texture in that image.
+
+    These values can be generated using any of the tools from the Creating Sparrow Atlas Files section above,
+    but if one of them is wrong, the easiest fix is to just open up your XML file in a text editor and tweak them by hand.
+  --&gt;</span>
+
+  <span class="c">&lt;!--
+    The below subtexture only takes up 39 pixels by 63 pixels in the texture file,
+    but in game it will render as though it was a 48 by 64 pixel texture,
+    with the image itself starting 4 pixels from the left and 8 pixels from the top.
+  --&gt;</span>
+	<span class="nt">&lt;SubTexture</span> <span class="na">name=</span><span class="s">"TestB"</span> <span class="na">x=</span><span class="s">"370"</span> <span class="na">y=</span><span class="s">"202"</span> <span class="na">width=</span><span class="s">"39"</span> <span class="na">height=</span><span class="s">"63"</span> <span class="na">frameX=</span><span class="s">"4"</span> <span class="na">frameY=</span><span class="s">"8"</span> <span class="na">frameWidth=</span><span class="s">"48"</span> <span class="na">frameHeight=</span><span class="s">"64"</span><span class="nt">/&gt;</span>
+
+  <span class="c">&lt;!--
+    Why do more work? Why have more sprites in your file than you really need?
+    Say we want to include four arrows in our spritesheet; you actually only really need one!
+
+    The following attributes can help us here:
+    * The flipX attribute mirrors the image horizontally before it is displayed.
+    * The flipY attribute mirrors the image vertically before it is displayed.
+    * The rotated attribute turns the image a quarter turn (90 degrees) before it is displayed.
+  --&gt;</span>
+
+  <span class="c">&lt;!-- The base subtexture. --&gt;</span>
+  <span class="nt">&lt;SubTexture</span> <span class="na">name=</span><span class="s">"LeftArrow"</span> <span class="na">x=</span><span class="s">"32"</span> <span class="na">y=</span><span class="s">"0"</span> <span class="na">width=</span><span class="s">"64"</span> <span class="na">height=</span><span class="s">"64"</span><span class="nt">/&gt;</span>
+  <span class="c">&lt;!--
+    Rotate the left 90 degrees. Now we have a second arrow sprite we can load,
+    but the memory usage in-game is still the same! Nice!
+  --&gt;</span>
+  <span class="nt">&lt;SubTexture</span> <span class="na">name=</span><span class="s">"UpArrow"</span> <span class="na">x=</span><span class="s">"32"</span> <span class="na">y=</span><span class="s">"0"</span> <span class="na">width=</span><span class="s">"64"</span> <span class="na">height=</span><span class="s">"64"</span> <span class="na">rotated=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+  <span class="c">&lt;!--
+    Flip the left arrow horizontally to get a right arrow.
+  --&gt;</span>
+  <span class="nt">&lt;SubTexture</span> <span class="na">name=</span><span class="s">"RightArrow"</span> <span class="na">x=</span><span class="s">"32"</span> <span class="na">y=</span><span class="s">"0"</span> <span class="na">width=</span><span class="s">"64"</span> <span class="na">height=</span><span class="s">"64"</span> <span class="na">flipX=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+  <span class="c">&lt;!--
+    Rotate the left arrow 90 degrees then flip it vertically to get a down arrow.
+    See how we combine the two attributes to get the exact result we want? Easy!
+  --&gt;</span>
+  <span class="nt">&lt;SubTexture</span> <span class="na">name=</span><span class="s">"DownArrow"</span> <span class="na">x=</span><span class="s">"32"</span> <span class="na">y=</span><span class="s">"0"</span> <span class="na">width=</span><span class="s">"64"</span> <span class="na">height=</span><span class="s">"64"</span> <span class="na">rotated=</span><span class="s">"true"</span> <span class="na">flipY=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+
+<span class="c">&lt;!--
+  Every tag in XML needs to be closed.
+  For the SubTextures above, we use a / at the end to create a self-closing XML tag.
+--&gt;</span>
+<span class="nt">&lt;/TextureAtlas&gt;</span>
+</code></pre></div></div>
+
+<p>To recap, the valid attributes of a <code class="language-plaintext highlighter-rouge">SubTexture</code> are:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">name</code>: The name for the subtexture that the game will reference.
+    <ul>
+      <li>Required attribute.</li>
+      <li>For animations, use the correct prefix then suffix with numbers.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">x</code>: The horizontal position in the image to pick the subtexture from.
+    <ul>
+      <li>Required attribute.</li>
+      <li>Cannot be further than the edge of the image.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">y</code>: The vertical position in the image to pick the subtexture from.
+    <ul>
+      <li>Required attribute.</li>
+      <li>Cannot be further than the edge of the image.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">width</code>: The horizontal size of the subtexture.
+    <ul>
+      <li>Required attribute.</li>
+      <li>Cannot be larger than the original texture.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">height</code>: The vertical size of the subtexture.
+    <ul>
+      <li>Required attribute.</li>
+      <li>Cannot be larger than the original texture.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">frameX</code>: The horizontal offset to move the sprite to in the final rendered texture.
+    <ul>
+      <li>Optional attribute.</li>
+      <li>Mainly used to add whitespace to an image.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">frameY</code>: The vertical offset to move the sprite to in the final rendered texture.
+    <ul>
+      <li>Optional attribute.</li>
+      <li>Mainly used to add whitespace to an image.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">frameWidth</code>: The full width of the final rendered texture.
+    <ul>
+      <li>Optional attribute.</li>
+      <li>Mainly used to add whitespace to an image.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">frameHeight</code>: The full height of the final rendered texture.
+    <ul>
+      <li>Optional attribute.</li>
+      <li>Mainly used to add whitespace to an image.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">flipX</code>: Set to <code class="language-plaintext highlighter-rouge">true</code> to flip the resulting image horizontally.
+    <ul>
+      <li>Optional attribute.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">flipY</code>: Set to <code class="language-plaintext highlighter-rouge">true</code> to flip the resulting image vertically.
+    <ul>
+      <li>Optional attribute.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">rotated</code>: Set to <code class="language-plaintext highlighter-rouge">true</code> to rotate the resulting image by 90 degrees.
+    <ul>
+      <li>Optional attribute.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="handling-sprites-in-haxeflixel">Handling Sprites in HaxeFlixel</h2>
+
+<p>In order to use a sprite sheet in HaxeFlixel, you simply need to create an FlxFrameCollection object; there is a utility function called <code class="language-plaintext highlighter-rouge">FlxAtlasFrames.fromSparrow</code> which will do this for you. <code class="language-plaintext highlighter-rouge">fromSparrow</code> needs the image source and the atlas description (the XML data); this can be either the contents of the file or the path to the file that should be loaded.</p>
+
+<p>Once they’re generated, simply assign them to a sprite and add animations based on the frame names (or prefix for frame names) you provide. For animated/sprite-based graphics, rather than use the <a href="https://api.haxeflixel.com/flixel/FlxSprite.html#loadGraphic">FlxSprite.loadGraphic()</a> function, you should instead assign to <code class="language-plaintext highlighter-rouge">FlxSprite.frames</code> like so:</p>
+
+<div class="language-haxe highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">spr</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FlxSprite</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">);</span>
+<span class="nx">spr</span><span class="p">.</span><span class="nx">frames</span> <span class="o">=</span> <span class="nx">FlxAtlasFrames</span><span class="p">.</span><span class="nx">fromSparrow</span><span class="p">(</span><span class="nx">pngPath</span><span class="p">,</span> <span class="nx">xmlPath</span><span class="p">);</span>
+<span class="c1">// You can specify all the frames by individual </span>
+<span class="nx">spr</span><span class="p">.</span><span class="nx">animation</span><span class="p">.</span><span class="nx">addByNames</span><span class="p">(</span><span class="s1">'idle'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'GF IDLE 0001'</span><span class="p">,</span> <span class="s1">'GF IDLE 0002'</span><span class="p">,</span> <span class="s1">'GF IDLE 0003'</span><span class="p">,</span> <span class="s1">'GF IDLE 0004'</span><span class="p">])</span>
+</code></pre></div></div>
+
+<p>Note that a given <code class="language-plaintext highlighter-rouge">FlxGraphic</code> will cache its own frame data and it can be retrieved using the static function <code class="language-plaintext highlighter-rouge">FlxAtlasFrames.findFrame(graphic)</code>;</p>
+
+<p>Also note that, specifically in the case of Enigma, the <code class="language-plaintext highlighter-rouge">GraphicsAssets.loadSparrowAtlas(key, ?library, shouldCache)</code> function is provided as a convenient wrapper for <code class="language-plaintext highlighter-rouge">FlxAtlasFrames.fromSparrow</code>.</p>
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+  </body>
+</html>

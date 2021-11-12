@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,maximum-scale=2">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/style.css?v=83aa5cf22049aedb288d193c8cd5cbb9aeed959a">
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Enigma Engine | A special repository to host the Github.io page.</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Enigma Engine" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A special repository to host the Github.io page." />
+<meta property="og:description" content="A special repository to host the Github.io page." />
+<link rel="canonical" href="https://enigmaengine.github.io/docs/development-tools/" />
+<meta property="og:url" content="https://enigmaengine.github.io/docs/development-tools/" />
+<meta property="og:site_name" content="Enigma Engine" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Enigma Engine" />
+<script type="application/ld+json">
+{"url":"https://enigmaengine.github.io/docs/development-tools/","description":"A special repository to host the Github.io page.","@type":"WebPage","headline":"Enigma Engine","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <!-- TODO: Change this to latest release -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a id="home_banner" href="/">Home</a>
+
+
+<a id="issue_banner" href="https://github.com/EnigmaEngine/EnigmaEngine.github.io/issues">Report an Issue</a>
+
+<img
+    id="header-logo"
+    src="https://raw.githubusercontent.com/EnigmaEngine/EnigmaEngine/stable/art/EnigmaEngineFont.png"
+    alt="Enigma Engine" />
+
+/docs/development-tools/
+
+
+<!-- This is auto-populated from the Github repo! -->
+
+    <section id="downloads">
+        <div id="release"><a href="/changelog"></a></span></div>
+        
+        
+        
+                
+    </section>
+
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        
+<div id="toc" class="sidebar">
+
+
+<h2>Documentation</h2>
+
+<ul>
+  <li>
+    <a href="/docs/installing">Installing Enigma Engine</a>
+    <ul>
+      <li>
+        <a href="/docs/adding-mods">Add and Configure Mods</a>
+      </li>
+      <li>
+        <a href="/docs/mod-showcase">Mod Showcase</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="/docs/modding-basics">Modding Basics</a>
+    <ul>
+        <li>
+          <a href="/docs/custom-characters">Custom Characters</a>
+        </li>
+        <ul>
+          <li>
+            <a href="/docs/custom-health-icons">Custom Health Icons</a>
+          </li>
+        </ul>
+        <li>
+          <a href="/docs/custom-songs">Custom Songs</a>
+        </li>
+        <li>
+          <a href="/docs/custom-stages">Custom Stages</a>
+        </li>
+        <li>
+          <a href="/docs/custom-story-weeks">Custom Story Weeks</a>
+        </li>
+        <li>
+          <a href="/docs/custom-title-screen">Custom Title Screen</a>
+        </li>
+    </ul>
+  </li>
+  <li>
+    <a href="/docs/design-philosophy">Design Philosophy</a>
+  </li>
+  <li>
+    Technical Information
+    <ul>
+      <li><a href="/docs/building-from-source">Building from Source</a></li>
+      <li><a href="/docs/development-tools">Development Tools</a></li>
+      <li><a href="/docs/build-troubleshooting">Build Troubleshooting</a></li>
+      <li>
+        <a href="/docs/animation-format">Animation File Format (Sparrow v2)</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+</div>
+
+<h1 id="enigma-engine-development-tools">Enigma Engine Development Tools</h1>
+
+<p>Now that you can compile and run the game from VSCode, you can start developing on features. However, you will likely experience one or more bugs or problems during development. Thankfully, powerful tools have been developed which Enigma Engine utilizes to their FULLEST.</p>
+
+<h3 id="breakpoints">Breakpoints</h3>
+
+<p>When you run FNF as a Debug build from the Run and Debug menu, you get integration with VSCode’s debugging tools. A set of controls will pop up, allowing you to stop, restart, or pause the game.</p>
+
+<p>You can also set breakpoints; go to the line of code you are having trouble with, hover your mouse over the line number, and click the red dot on the left side. This creates a breakpoint; when the game reaches that particular line in the program, VSCode will pause it and show you useful information  in the left panel. This includes the call stack (which shows which functions were called by what other functions to get to this line), and a list of all local and member variables, which is very useful for determining the state of the program at a given point and diagnosing behavior.</p>
+
+<p>While stopped at a breakpoint, you can click <code class="language-plaintext highlighter-rouge">Step Over</code> to move ahead one line in the program, <code class="language-plaintext highlighter-rouge">Step Into</code> to start stepping through the function being run on the current line, <code class="language-plaintext highlighter-rouge">Step Out</code> to continue running the program until the end of this function, or <code class="language-plaintext highlighter-rouge">Resume</code> to continue running the program until another breakpoint is hit.</p>
+
+<h3 id="crash-inspection">Crash Inspection</h3>
+
+<p>Sometimes the game will try to do something that doesn’t make sense, like accessing an attribute of a null object. In this case, it will fail and the program will crash.</p>
+
+<p>However, if you are running the game using the Run and Debug menu, VSCode will intercept this crash, find the line of code that caused it, and stop there like a breakpoint. This is very useful for diagnosing issues, since simply telling people that a Null Object Reference error occurred isn’t useful unless you can show them what code is causing the error.</p>
+
+<h3 id="haxeflixel-debugger">HaxeFlixel Debugger</h3>
+
+<p>The third useful tool which Enigma has adapated itself to make full use of is the Debugger.</p>
+
+<p>Among other things, the HaxeFlixel Debugger has the following tools:</p>
+<ul>
+  <li>A Log view which outputs messages output by Haxe. These messages also show up in the VSCode Debug Console and in the log file (check <code class="language-plaintext highlighter-rouge">export/debug/&lt;PLATFORM&gt;/bin/log</code>).</li>
+  <li>A Stats view with info about frame rate and memory usage.</li>
+  <li>A VCR at the top which lets you pause the game or reset the current scene.</li>
+  <li>A button at the top right which enables red boxes around each sprite.</li>
+  <li>A Tools view that includes tools which allow you to select (Pointer), move (Mover), and transform (Transform) sprites.</li>
+  <li>A Watch view, that lets you preview values you have set to be watched.</li>
+  <li>A Console view you can type in.</li>
+</ul>
+
+<p>You can drag these views around or hide them to suit your preferred layout.</p>
+
+<h3 id="haxeflixel-console">HaxeFlixel Console</h3>
+
+<p>The most powerful of these tools is definitely the console. You can type in most Haxe code into the console, and it will interpret and run it for you. Additionally, Enigma Engine has the unique feature of including several custom commands for the Debug Console, which are documented below</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Example</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>trackBoyfriend</td>
+      <td><code class="language-plaintext highlighter-rouge">trackBoyfriend()</code></td>
+      <td>Create a Tracker window displaying stats about the Boyfriend sprite.</td>
+    </tr>
+    <tr>
+      <td>trackGirlfriend</td>
+      <td><code class="language-plaintext highlighter-rouge">trackGirlfriend()</code></td>
+      <td>Create a Tracker window displaying stats about the Girlfriend sprite.</td>
+    </tr>
+    <tr>
+      <td>trackDad</td>
+      <td><code class="language-plaintext highlighter-rouge">trackDad()</code></td>
+      <td>Create a Tracker window displaying stats about the Dad sprite.</td>
+    </tr>
+    <tr>
+      <td>setLogLevel</td>
+      <td><code class="language-plaintext highlighter-rouge">setLogLevel('WARN')</code></td>
+      <td>Set the logging level; messages with lower significance are not displayed or written to the log file.</td>
+    </tr>
+    <tr>
+      <td>playSong</td>
+      <td><code class="language-plaintext highlighter-rouge">playSong('Dad Battle', 2)</code></td>
+      <td>Open the song with the given name and the given difficulty in Free Play,</td>
+    </tr>
+    <tr>
+      <td>chartSong</td>
+      <td><code class="language-plaintext highlighter-rouge">chartSong('Dad Battle', 2)</code></td>
+      <td>Open the song with the given name and the given difficulty in the Chart Editor.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>If you have any other suggestions for console commands you feel would be useful for development, feel free to <a href="https://github.com/MasterEric/Enigma-Engine/issues">suggest a feature</a>.</p>
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+  </body>
+</html>

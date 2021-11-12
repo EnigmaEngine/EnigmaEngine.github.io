@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,maximum-scale=2">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/style.css?v=83aa5cf22049aedb288d193c8cd5cbb9aeed959a">
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Enigma Engine | A special repository to host the Github.io page.</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Enigma Engine" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A special repository to host the Github.io page." />
+<meta property="og:description" content="A special repository to host the Github.io page." />
+<link rel="canonical" href="https://enigmaengine.github.io/docs/adding-mods/" />
+<meta property="og:url" content="https://enigmaengine.github.io/docs/adding-mods/" />
+<meta property="og:site_name" content="Enigma Engine" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Enigma Engine" />
+<script type="application/ld+json">
+{"url":"https://enigmaengine.github.io/docs/adding-mods/","description":"A special repository to host the Github.io page.","@type":"WebPage","headline":"Enigma Engine","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <!-- TODO: Change this to latest release -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a id="home_banner" href="/">Home</a>
+
+
+<a id="issue_banner" href="https://github.com/EnigmaEngine/EnigmaEngine.github.io/issues">Report an Issue</a>
+
+<img
+    id="header-logo"
+    src="https://raw.githubusercontent.com/EnigmaEngine/EnigmaEngine/stable/art/EnigmaEngineFont.png"
+    alt="Enigma Engine" />
+
+/docs/adding-mods/
+
+
+<!-- This is auto-populated from the Github repo! -->
+
+    <section id="downloads">
+        <div id="release"><a href="/changelog"></a></span></div>
+        
+        
+        
+                
+    </section>
+
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        
+<div id="toc" class="sidebar">
+
+
+<h2>Documentation</h2>
+
+<ul>
+  <li>
+    <a href="/docs/installing">Installing Enigma Engine</a>
+    <ul>
+      <li>
+        <a href="/docs/adding-mods">Add and Configure Mods</a>
+      </li>
+      <li>
+        <a href="/docs/mod-showcase">Mod Showcase</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="/docs/modding-basics">Modding Basics</a>
+    <ul>
+        <li>
+          <a href="/docs/custom-characters">Custom Characters</a>
+        </li>
+        <ul>
+          <li>
+            <a href="/docs/custom-health-icons">Custom Health Icons</a>
+          </li>
+        </ul>
+        <li>
+          <a href="/docs/custom-songs">Custom Songs</a>
+        </li>
+        <li>
+          <a href="/docs/custom-stages">Custom Stages</a>
+        </li>
+        <li>
+          <a href="/docs/custom-story-weeks">Custom Story Weeks</a>
+        </li>
+        <li>
+          <a href="/docs/custom-title-screen">Custom Title Screen</a>
+        </li>
+    </ul>
+  </li>
+  <li>
+    <a href="/docs/design-philosophy">Design Philosophy</a>
+  </li>
+  <li>
+    Technical Information
+    <ul>
+      <li><a href="/docs/building-from-source">Building from Source</a></li>
+      <li><a href="/docs/development-tools">Development Tools</a></li>
+      <li><a href="/docs/build-troubleshooting">Build Troubleshooting</a></li>
+      <li>
+        <a href="/docs/animation-format">Animation File Format (Sparrow v2)</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+</div>
+
+<h1 id="adding-and-configuring-mods">Adding and Configuring Mods</h1>
+
+<h2 id="adding-new-mods">Adding New Mods</h2>
+
+<p>To add a ModCore mod to your installation of Enigma Engine, follow these steps.</p>
+
+<ol>
+  <li>Download the mod and extract the ZIP file.</li>
+  <li>Place the mod folder into the <code class="language-plaintext highlighter-rouge">mods</code> folder in your installation folder.</li>
+</ol>
+
+<p>Enigma Engine will detect the mod automatically.</p>
+
+<h2 id="configuring-mods">Configuring Mods</h2>
+
+<p>As long as one or more mods are installed, Enigma Engine will automatically detect them and display a splash screen with the following options:</p>
+
+<ul>
+  <li>SPACE/ENTER: Start the game with mods enabled.
+    <ul>
+      <li>If you have not configured any mods, Enigma Engine will automatically detect and use all mods it finds.</li>
+      <li>If you have configured mods, Enigma Engine will use the mods you have configured.</li>
+    </ul>
+  </li>
+  <li>2: Start the game with mods disabled.</li>
+  <li>3: Configure mods.
+    <ul>
+      <li>This will open the Mod Configuration menu.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>This is the mod configuration menu:</p>
+
+<p><img src="/images/docs/mod-config-menu.jpg" /></p>
+
+<p>Mods you have installed will be displayed in the list on the left side. You can enable the mods by clicking the arrow, which will move them to the right side. Once the mod is loaded, you can reorder the mods by clicking the up and down arrows.</p>
+
+<p>Mods which are placed higher in the list will be loaded first. Mods which are placed lower in the list will override the contents of the mods loaded earlier, if applicable.</p>
+
+<p>There are also several buttons:</p>
+
+<ul>
+  <li>Load All Mods: Load all mods from the unloaded mod list.</li>
+  <li>Unload All Mods: Unload all mods from the loaded mod list.</li>
+  <li>Revert Mod Config: Revert the mod configuration to what it was previously.</li>
+  <li>Save and Load Game: Save the current mod configuration and load the game.</li>
+  <li>Load Game Without Saving: Discard the current the mod configuration and load the game using the previous mod configuration.</li>
+</ul>
+
+<h2 id="uninstalling-mods">Uninstalling Mods</h2>
+
+<p>To uninstall a mod, follow these steps:</p>
+
+<ol>
+  <li>Locate the mod you wish to remove within the <code class="language-plaintext highlighter-rouge">mods</code> folder in your installation folder.</li>
+  <li>Delete the mod folder.</li>
+</ol>
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+  </body>
+</html>

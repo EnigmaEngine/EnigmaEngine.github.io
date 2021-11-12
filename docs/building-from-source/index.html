@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,maximum-scale=2">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/style.css?v=83aa5cf22049aedb288d193c8cd5cbb9aeed959a">
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Enigma Engine | A special repository to host the Github.io page.</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Enigma Engine" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A special repository to host the Github.io page." />
+<meta property="og:description" content="A special repository to host the Github.io page." />
+<link rel="canonical" href="https://enigmaengine.github.io/docs/building-from-source/" />
+<meta property="og:url" content="https://enigmaengine.github.io/docs/building-from-source/" />
+<meta property="og:site_name" content="Enigma Engine" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Enigma Engine" />
+<script type="application/ld+json">
+{"url":"https://enigmaengine.github.io/docs/building-from-source/","description":"A special repository to host the Github.io page.","@type":"WebPage","headline":"Enigma Engine","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <!-- TODO: Change this to latest release -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a id="home_banner" href="/">Home</a>
+
+
+<a id="issue_banner" href="https://github.com/EnigmaEngine/EnigmaEngine.github.io/issues">Report an Issue</a>
+
+<img
+    id="header-logo"
+    src="https://raw.githubusercontent.com/EnigmaEngine/EnigmaEngine/stable/art/EnigmaEngineFont.png"
+    alt="Enigma Engine" />
+
+/docs/building-from-source/
+
+
+<!-- This is auto-populated from the Github repo! -->
+
+    <section id="downloads">
+        <div id="release"><a href="/changelog"></a></span></div>
+        
+        
+        
+                
+    </section>
+
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        
+<div id="toc" class="sidebar">
+
+
+<h2>Documentation</h2>
+
+<ul>
+  <li>
+    <a href="/docs/installing">Installing Enigma Engine</a>
+    <ul>
+      <li>
+        <a href="/docs/adding-mods">Add and Configure Mods</a>
+      </li>
+      <li>
+        <a href="/docs/mod-showcase">Mod Showcase</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="/docs/modding-basics">Modding Basics</a>
+    <ul>
+        <li>
+          <a href="/docs/custom-characters">Custom Characters</a>
+        </li>
+        <ul>
+          <li>
+            <a href="/docs/custom-health-icons">Custom Health Icons</a>
+          </li>
+        </ul>
+        <li>
+          <a href="/docs/custom-songs">Custom Songs</a>
+        </li>
+        <li>
+          <a href="/docs/custom-stages">Custom Stages</a>
+        </li>
+        <li>
+          <a href="/docs/custom-story-weeks">Custom Story Weeks</a>
+        </li>
+        <li>
+          <a href="/docs/custom-title-screen">Custom Title Screen</a>
+        </li>
+    </ul>
+  </li>
+  <li>
+    <a href="/docs/design-philosophy">Design Philosophy</a>
+  </li>
+  <li>
+    Technical Information
+    <ul>
+      <li><a href="/docs/building-from-source">Building from Source</a></li>
+      <li><a href="/docs/development-tools">Development Tools</a></li>
+      <li><a href="/docs/build-troubleshooting">Build Troubleshooting</a></li>
+      <li>
+        <a href="/docs/animation-format">Animation File Format (Sparrow v2)</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+</div>
+
+<h1 id="building-enigma-engine-from-source">Building Enigma Engine from Source</h1>
+
+<p>Building Enigma Engine is easy, as long as you follow the guide carefully. If you miss a step, and an error pops up, it’s your fault and not mine.</p>
+
+<p>Note that this guide is for developers who want to contribute changes to the Enigma Engine itself.</p>
+
+<ul>
+  <li>If you just want to play the game, click the link in the header of this page.</li>
+  <li>If you want to make a basic mod, go to the <a href="/docs/modding-basics">Modding Basics guide</a> instead.</li>
+</ul>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<ul>
+  <li>A machine with the platform you want to build for. You can’t make a Windows build on a Mac, you can’t make a Linux build on Windows, etc.
+    <ul>
+      <li>If you’re making a build for HTML5/browser, you can use any platform.</li>
+    </ul>
+  </li>
+  <li>Familiarity with the command line for your operating sytem (Powershell or CMD on Windows, the terminal on Mac/Linux).</li>
+  <li><a href="https://code.visualstudio.com/">Visual Studio Code</a>, the preferred development environment for Enigma Engine. The repo includes several launch configurations and settings for VS Code that make development easier.</li>
+</ul>
+
+<h2 id="pro-tip">Pro Tip</h2>
+
+<p>Make sure you go into your Windows Defender settings and <a href="https://support.microsoft.com/en-us/windows/add-an-exclusion-to-windows-security-811816c0-4dfd-af4a-47e4-c301afe13b26">make an exclusion for any development folders</a>. Otherwise, Windows will scan all your binaries as you generate them, causing a massive performance hit.</p>
+
+<h2 id="dependencies">Dependencies</h2>
+
+<p>You will need to install the following dependencies:</p>
+<ul>
+  <li>Git
+    <ul>
+      <li>On Windows and MacOS platforms, you can download this from <a href="https://git-scm.com/downloads">git-scm</a>.</li>
+      <li>On Linux platforms, use the package manager for your distro. If you’re on Ubuntu, run <code class="language-plaintext highlighter-rouge">sudo apt install git</code>. If you’re not on Ubuntu, you already know how to install Git.</li>
+    </ul>
+  </li>
+  <li>Haxe (Latest Version)
+    <ul>
+      <li>If you’re already using 4.1.5, that should work fine, but the 4.2.x versions are also fully compatible.</li>
+      <li>On Windows and MacOS, you can download Haxe from <a href="https://haxe.org/download/">haxe.org</a>.</li>
+      <li>On Linux, the setup script will install Haxe for you. See <a href="#running-the-setup-script">Running the Setup Script</a> below.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="windows-visual-studio-dependencies">Windows Visual Studio Dependencies</h3>
+
+<p>This one is a pain. If you’re on Windows, building for it requires installing several gigabytes of SDKs.</p>
+
+<p>Thankfully, the setup script will install them for you. See <a href="#running-the-setup-script">Running the Setup Script</a> below.</p>
+
+<h2 id="downloading-the-game">Downloading the Game</h2>
+
+<p>We’re going to use Git to clone the repository.</p>
+
+<p>PRO TIP: If you’re looking to become an experienced programmer, you need to learn to use Git and use it well. Do some research and find some good tutorials that explain how a Git repository is structured and how to properly interact with one.</p>
+
+<p>If you’re just looking to build the game, perform the following steps:</p>
+
+<ul>
+  <li>Open the command line and use <code class="language-plaintext highlighter-rouge">cd</code> to navigate to the directory where you want to put the game.</li>
+  <li>Run the following command:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/MasterEric/Enigma-Engine
+</code></pre></div>    </div>
+  </li>
+  <li>The uncompiled game files will now be in the directory you set.</li>
+  <li>(OPTIONAL) If you want to use a specific version of Engima Engine, run <code class="language-plaintext highlighter-rouge">cd</code> to enter the folder, then run <code class="language-plaintext highlighter-rouge">git checkout 0.1-EE</code> or whatever version you want to download.</li>
+</ul>
+
+<h2 id="running-the-setup-script">Running the Setup Script</h2>
+
+<p>THIS IS AN IMPORTANT STEP. You need to run the setup script even if you have built other Friday Night Funkin’ mods, before, including Kade Engine or Psyche Engine.</p>
+
+<p>On the Windows and Linux platforms, scripts are available to perform the process of downloading the necessary dependencies and preparing to build Enigma Engine.</p>
+
+<ul>
+  <li>On Windows, run <code class="language-plaintext highlighter-rouge">scripts/setup_Windows.bat</code>.</li>
+  <li>On Linux Ubuntu, run <code class="language-plaintext highlighter-rouge">scripts/setup_Ubuntu.sh</code>.</li>
+</ul>
+
+<h2 id="compiling-the-game">Compiling the Game</h2>
+<p>There are two ways to build and run the game during development:</p>
+
+<p>You can simply run <code class="language-plaintext highlighter-rouge">lime build windows</code>, but this is a bit clunky and it also misses out on a bunch of useful tools.</p>
+
+<p>The recommended method is the following:</p>
+
+<ul>
+  <li>Open Visual Studio Code and open the repository folder.</li>
+  <li>When the workspace opens, you will be presented with a popup telling you to install some recommended extensions. Do this (you’ll only have to do this once).
+    <ul>
+      <li>This will add support for Haxe syntax highlighting, Haxe code style formatting, support for the Lime build tool, and support for the HXCPP debugger.</li>
+    </ul>
+  </li>
+  <li>Click the arrow in the left side to switch to the Run and Debug tab.</li>
+  <li>Select the platform you want from the dropdown and click the Run button.</li>
+</ul>
+
+<p>This will automatically rebuild the game for you, then run the game, with debugging features enabled. Check out the page on <a href="/docs/development-tools">Development Tools</a> for more information on the game’s development tools.</p>
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+  </body>
+</html>

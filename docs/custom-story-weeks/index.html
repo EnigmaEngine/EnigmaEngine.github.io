@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,maximum-scale=2">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/style.css?v=83aa5cf22049aedb288d193c8cd5cbb9aeed959a">
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Enigma Engine | A special repository to host the Github.io page.</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Enigma Engine" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A special repository to host the Github.io page." />
+<meta property="og:description" content="A special repository to host the Github.io page." />
+<link rel="canonical" href="https://enigmaengine.github.io/docs/custom-story-weeks/" />
+<meta property="og:url" content="https://enigmaengine.github.io/docs/custom-story-weeks/" />
+<meta property="og:site_name" content="Enigma Engine" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Enigma Engine" />
+<script type="application/ld+json">
+{"url":"https://enigmaengine.github.io/docs/custom-story-weeks/","description":"A special repository to host the Github.io page.","@type":"WebPage","headline":"Enigma Engine","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <!-- TODO: Change this to latest release -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a id="home_banner" href="/">Home</a>
+
+
+<a id="issue_banner" href="https://github.com/EnigmaEngine/EnigmaEngine.github.io/issues">Report an Issue</a>
+
+<img
+    id="header-logo"
+    src="https://raw.githubusercontent.com/EnigmaEngine/EnigmaEngine/stable/art/EnigmaEngineFont.png"
+    alt="Enigma Engine" />
+
+/docs/custom-story-weeks/
+
+
+<!-- This is auto-populated from the Github repo! -->
+
+    <section id="downloads">
+        <div id="release"><a href="/changelog"></a></span></div>
+        
+        
+        
+                
+    </section>
+
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        
+<div id="toc" class="sidebar">
+
+
+<h2>Documentation</h2>
+
+<ul>
+  <li>
+    <a href="/docs/installing">Installing Enigma Engine</a>
+    <ul>
+      <li>
+        <a href="/docs/adding-mods">Add and Configure Mods</a>
+      </li>
+      <li>
+        <a href="/docs/mod-showcase">Mod Showcase</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="/docs/modding-basics">Modding Basics</a>
+    <ul>
+        <li>
+          <a href="/docs/custom-characters">Custom Characters</a>
+        </li>
+        <ul>
+          <li>
+            <a href="/docs/custom-health-icons">Custom Health Icons</a>
+          </li>
+        </ul>
+        <li>
+          <a href="/docs/custom-songs">Custom Songs</a>
+        </li>
+        <li>
+          <a href="/docs/custom-stages">Custom Stages</a>
+        </li>
+        <li>
+          <a href="/docs/custom-story-weeks">Custom Story Weeks</a>
+        </li>
+        <li>
+          <a href="/docs/custom-title-screen">Custom Title Screen</a>
+        </li>
+    </ul>
+  </li>
+  <li>
+    <a href="/docs/design-philosophy">Design Philosophy</a>
+  </li>
+  <li>
+    Technical Information
+    <ul>
+      <li><a href="/docs/building-from-source">Building from Source</a></li>
+      <li><a href="/docs/development-tools">Development Tools</a></li>
+      <li><a href="/docs/build-troubleshooting">Build Troubleshooting</a></li>
+      <li>
+        <a href="/docs/animation-format">Animation File Format (Sparrow v2)</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+</div>
+
+<h1 id="modding-basics-custom-story-weeks">Modding Basics: Custom Story Weeks</h1>
+
+<p>Custom weeks are simultaneously easy to implement and highly flexible. You can create custom story weeks using mods without having to modify the code.</p>
+
+<p>A custom week manages the following:
+• What songs are in the week
+• What graphics are used for the week
+• Whether the week is unlocked by default and how to unlock it.</p>
+
+<p>Follow these steps:</p>
+
+<p>• Follow the <a href="/docs/modding-basics">Modding Basics</a> guide to create a basic mod.
+• Create a file <code class="language-plaintext highlighter-rouge">data/storymenu/weeks/&lt;weekid&gt;.json</code>. A week ID should be alphanumeric with dashes.
+• Copy the below template into the new data file.
+• Create a graphic to use for the week text
+• Create a file <code class="language-plaintext highlighter-rouge">_append/data/weeknames.txt</code> in your mod folder.</p>
+
+<h2 id="important-notes">Important Notes</h2>
+<p>• To add additional weeks in the same mod, simply add another week data file and add another entry to the <code class="language-plaintext highlighter-rouge">weeknames</code> folder.
+• Your mod can add as many weeks as you like, within reason.
+• A week will be available on any difficulty its songs are available on, and ONLY on difficulties where all listed songs are available. At least one difficulty should be available but not all difficulties are necessary and custom difficulties can be used (see [Custom Difficulties]).</p>
+
+<h2 id="template">Template</h2>
+
+<p>Here is the <code class="language-plaintext highlighter-rouge">dad.json</code> story week file as an example. The story week file specifies basic information about the story week.</p>
+
+<div class="language-jsonc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Daddy Dearest"</span><span class="p">,</span><span class="w"> </span><span class="c1">// The name of the story week, as seen in the top right</span><span class="w">
+    </span><span class="nl">"assets"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"characters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"dad"</span><span class="p">,</span><span class="w"> </span><span class="s2">"bf"</span><span class="p">,</span><span class="w"> </span><span class="s2">"gf"</span><span class="p">],</span><span class="w"> </span><span class="c1">// The black outline characters to render, as retrieved from `images/storymenu/characters/&lt;name&gt;.png`</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"storymenu/weeks/week1"</span><span class="p">,</span><span class="w"> </span><span class="c1">// The asset file to use for the title graphic, relative to `assets/images`</span><span class="w">
+        </span><span class="nl">"background"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#9271FD"</span><span class="w"> </span><span class="c1">// The background to use behind the story characters. This can either be the path to an asset or a hex color.</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"startSound"</span><span class="p">:</span><span class="w"> </span><span class="s2">"confirmMenu"</span><span class="p">,</span><span class="w"> </span><span class="c1">// The sound to play when the week starts</span><span class="w">
+    </span><span class="nl">"unlocked"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="c1">// Whether the week is unlocked by default</span><span class="w">
+    </span><span class="nl">"nextWeek"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pico"</span><span class="p">,</span><span class="w"> </span><span class="c1">// The week to unlock after this week is completed</span><span class="w">
+    </span><span class="nl">"songs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="c1">// The songs that are in the week</span><span class="w">
+        </span><span class="s2">"bopeebo"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fresh"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"dadbattle"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+  </body>
+</html>

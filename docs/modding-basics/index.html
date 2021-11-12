@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,maximum-scale=2">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/style.css?v=83aa5cf22049aedb288d193c8cd5cbb9aeed959a">
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Enigma Engine | A special repository to host the Github.io page.</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Enigma Engine" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A special repository to host the Github.io page." />
+<meta property="og:description" content="A special repository to host the Github.io page." />
+<link rel="canonical" href="https://enigmaengine.github.io/docs/modding-basics/" />
+<meta property="og:url" content="https://enigmaengine.github.io/docs/modding-basics/" />
+<meta property="og:site_name" content="Enigma Engine" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Enigma Engine" />
+<script type="application/ld+json">
+{"url":"https://enigmaengine.github.io/docs/modding-basics/","description":"A special repository to host the Github.io page.","@type":"WebPage","headline":"Enigma Engine","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <!-- TODO: Change this to latest release -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a id="home_banner" href="/">Home</a>
+
+
+<a id="issue_banner" href="https://github.com/EnigmaEngine/EnigmaEngine.github.io/issues">Report an Issue</a>
+
+<img
+    id="header-logo"
+    src="https://raw.githubusercontent.com/EnigmaEngine/EnigmaEngine/stable/art/EnigmaEngineFont.png"
+    alt="Enigma Engine" />
+
+/docs/modding-basics/
+
+
+<!-- This is auto-populated from the Github repo! -->
+
+    <section id="downloads">
+        <div id="release"><a href="/changelog"></a></span></div>
+        
+        
+        
+                
+    </section>
+
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        
+<div id="toc" class="sidebar">
+
+
+<h2>Documentation</h2>
+
+<ul>
+  <li>
+    <a href="/docs/installing">Installing Enigma Engine</a>
+    <ul>
+      <li>
+        <a href="/docs/adding-mods">Add and Configure Mods</a>
+      </li>
+      <li>
+        <a href="/docs/mod-showcase">Mod Showcase</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="/docs/modding-basics">Modding Basics</a>
+    <ul>
+        <li>
+          <a href="/docs/custom-characters">Custom Characters</a>
+        </li>
+        <ul>
+          <li>
+            <a href="/docs/custom-health-icons">Custom Health Icons</a>
+          </li>
+        </ul>
+        <li>
+          <a href="/docs/custom-songs">Custom Songs</a>
+        </li>
+        <li>
+          <a href="/docs/custom-stages">Custom Stages</a>
+        </li>
+        <li>
+          <a href="/docs/custom-story-weeks">Custom Story Weeks</a>
+        </li>
+        <li>
+          <a href="/docs/custom-title-screen">Custom Title Screen</a>
+        </li>
+    </ul>
+  </li>
+  <li>
+    <a href="/docs/design-philosophy">Design Philosophy</a>
+  </li>
+  <li>
+    Technical Information
+    <ul>
+      <li><a href="/docs/building-from-source">Building from Source</a></li>
+      <li><a href="/docs/development-tools">Development Tools</a></li>
+      <li><a href="/docs/build-troubleshooting">Build Troubleshooting</a></li>
+      <li>
+        <a href="/docs/animation-format">Animation File Format (Sparrow v2)</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+</div>
+
+<h1 id="modding-guide-modding-basics">Modding Guide: Modding Basics</h1>
+
+<h2 id="using-mods">Using Mods</h2>
+
+<p>If you’re an end user looking to learn how to install a mod, see the page <a href="/docs/adding-mods">Add and Configure Mods</a>.</p>
+
+<h2 id="developing-mods">Developing Mods</h2>
+
+<p>Enigma Engine is home to a powerful and useful tool known as ModCore. ModCore makes it easy to append, replace, or merge files without editing the game’s code.</p>
+
+<p>Enigma Engine’s ModCore is powered by <a href="https://github.com/larsiusprime/polymod">Polymod</a>. Polymod is what handles loading the relevant assets, ensuring they are injected properly. It also handles ensuring mods are loaded in the proper order. The basic premise is that mods within the <code class="language-plaintext highlighter-rouge">mods</code> folder of your Enigma Engine install will be automatically loaded into the game.</p>
+
+<p>Currently, ModCore allows users to do the following:</p>
+<ul>
+  <li>Install and uninstall mods as easily as moving them into and out of the <code class="language-plaintext highlighter-rouge">mods</code> folder (with a mod menu coming soon).</li>
+  <li>Replace any existing assets (including graphics, song data, or audio files).</li>
+  <li>Add new assets, which the engine will detect and load automatically.</li>
+  <li>Append to or modify files without breaking mods that overlap.</li>
+</ul>
+
+<p>This page has a quick breakdown on how to make a basic mod, along with a more detailed explanation and some pro tips. If you’re looking to skip past the nitty gritty, simply follow these steps to make a simple mod:</p>
+
+<h3 id="creating-an-mod">Creating an Mod</h3>
+
+<p>The creation of every mod starts with these steps:</p>
+
+<ol>
+  <li>Create a folder. The name should be lowercase, alphanumeric with dashes. You’ll be able to specify a full title with symbols and stuff later.
+    <ul>
+      <li>If you downloaded Enigma Engine from the link above, place the mod folder within the <code class="language-plaintext highlighter-rouge">mods</code> directory next to <code class="language-plaintext highlighter-rouge">Enigma Engine.exe</code>.</li>
+      <li>If you’re building Enigma Engine from source, place the mod in the <code class="language-plaintext highlighter-rouge">example_mods</code> folder. It will be automatically copied into the <code class="language-plaintext highlighter-rouge">mods</code> folder when you build.
+        <ul>
+          <li>Pro tip, if you’re just making a basic mod, or even a more complex mod, you shouldn’t need to modify the source or rebuild the game! Just download the game and put your content into the <code class="language-plaintext highlighter-rouge">mods</code> folder.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Create a <code class="language-plaintext highlighter-rouge">_polymod_meta.json</code> file inside your newly created mod folder. Paste in the following content, modifying the title, description, and author as necessary.
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+ "title":"Example Mod",
+ "description":"This is an example mod!",
+ "author":"Foobar",
+ "api_version":"0.1.0",
+ "mod_version":"1.0.0",
+ "license":"CC BY 4.0,MIT"
+}
+</code></pre></div>    </div>
+  </li>
+  <li>(Optional) Create a <code class="language-plaintext highlighter-rouge">_polymod_icon.png</code> file inside your newly created mod folder. This is the icon that will be displayed in the mod menu.</li>
+  <li>Place your assets into the mod folder. For example, a simple Boyfriend skin mod would look like this once installed:
+|- Enigma Engine
+  |- Enigma.exe
+  |- mods
+ |- enaOverBf
+   |- shared
+     |- images
+       |- characters
+         |- BOYFRIEND.png
+         |- BOYFRIEND.xml
+   |- _polymod_meta.json
+   |- _polymod_icon.png</li>
+  <li>You’re done! The mod is now installed and ready to use. You can enable it by selecting “Play with all mods” or “Configure Mods” from the starting screen.</li>
+</ol>
+
+<h3 id="metadata">Metadata</h3>
+
+<p>You will want several pieces of metadata in order for Enigma Engine to identify and display your mod. Only <code class="language-plaintext highlighter-rouge">_polymod_meta.json</code> is mandatory, while other mods are recommended.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">_polymod_meta.json</code>
+    <ul>
+      <li>This file tells Polymod all about your mod, such as name and description. This file is <strong>MANDATORY</strong>.</li>
+      <li>Learn more about how to write this file below.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">_polymod_icon.png</code>
+    <ul>
+      <li>This icon will be used by mod browsers in the future. Make sure to provide one, 256x256 should be pretty good.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">LICENSE.txt</code>
+    <ul>
+      <li>This is the general sofware license used by the mod. Without a license, your mod is under All Rights Reserved.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">ASSET_LICENSE.txt</code>
+    <ul>
+      <li>This is the license specifically for the mod’s assets.</li>
+      <li>Creative Commons is recommended.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">CODE_LICENSE.txt</code> (for code/script-specific licensing terms.
+    <ul>
+      <li>GPLv3, Apache, or MIT are recommended.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">_polymod_pack.txt</code>
+    <ul>
+      <li>Used for modpacks.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="_polymod_metajson">_polymod_meta.json</h3>
+
+<p>Here is an example of a valid mod metadata file.</p>
+
+<p>Note that both <code class="language-plaintext highlighter-rouge">api_version</code> and <code class="language-plaintext highlighter-rouge">mod_version</code> should use valid <a href="https://semver.org/">Semantic Versioning 2.0.0</a> values.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+	"title":"Daisy",
+	"description":"This mod has a daisy",
+	"author":"Lars A. Doucet",
+	"api_version":"0.1.0",
+	"mod_version":"1.0.0-alpha",
+	"license":"CC BY 4.0,MIT"
+}
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">title</code>, <code class="language-plaintext highlighter-rouge">description</code>, <code class="language-plaintext highlighter-rouge">author</code>, and <code class="language-plaintext highlighter-rouge">license</code> should be self-explanatory. Be sure to put good values here as they will eventually be displayed in the mod menu.</li>
+  <li><code class="language-plaintext highlighter-rouge">mod_version</code> should be a version number that you set, and increment every time the mod changes.</li>
+  <li><code class="language-plaintext highlighter-rouge">api_version</code> is a version set by Enigma Engine. This uses Semantic Versioning; one or more breaking changes that will require fixes in existing mods (which should happen very rarely and will include a migration guide here on the wiki) will increment the major version, feature additions that don’t break existing mods will increment the minor version, and backwards compatible bug fix changes and tweaks will increment the patch version. If the API version you specify in your mod is not compatible, Enigma Engine will not load it.</li>
+</ul>
+
+<h2 id="assets">Assets</h2>
+
+<p>You can create complex and elaborate mods simply by adding the relevant assets to your mod folder. By adding song data files to the <code class="language-plaintext highlighter-rouge">data/songs</code> folder, the game will be able to detect and load them if you add the relevant data to the <code class="language-plaintext highlighter-rouge">weeks</code></p>
+
+<h3 id="adding-and-replacing">Adding and Replacing</h3>
+
+<p>Asset additions and replacements are simple; just place the assets in the relevant subfolder.</p>
+
+<p>Here’s what the mod folder might look like for a simple “XXX over Boyfriend” mod.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;modRoot&gt; (name this anything)
+|- _polymod_meta.json
+|- images
+  |- characters
+    |- BOYFRIEND.xml
+    |- BOYFRIEND.png
+|- data
+  |- characters
+    |- boyfriend.json
+</code></pre></div></div>
+
+<p>Some tips:</p>
+
+<ul>
+  <li>The folder structure corresponds with that used by the <a href="https://github.com/EnigmaEngine/EnigmaEngine/tree/stable/assets">game’s asset folder</a>. Assets which go into the <code class="language-plaintext highlighter-rouge">preload</code> folder are instead moved up to the mod root folder but otherwise the structure remains the same.
+    <ul>
+      <li>Check out a real example at <a href="https://github.com/EnigmaEngine/ModCore-ENA-Skin-Pack/">ENA Skin Pack for ModCore</a></li>
+    </ul>
+  </li>
+  <li>Assets which share the same name as assets already in the game will replace those assets.</li>
+  <li>Song files have been moved into a subdirectory at <code class="language-plaintext highlighter-rouge">data/songs/&lt;songname&gt;</code> rather than being in <code class="language-plaintext highlighter-rouge">data/&lt;songname&gt;</code>. As long as you place the song in the CORRECT subdirectory, the game will automatically detect it.</li>
+  <li>Code for adding new characters has been abstracted to read from a file in `data/characters/</li>
+  <li>Data files which are new and do not share the same name as an existing asset (such as new song files in <code class="language-plaintext highlighter-rouge">data/songs</code> will be readable by the game as long as you add them to Free Play or a custom week; see the <a href="#Appending">Appending</a> section below.</li>
+</ul>
+
+<h3 id="appending">Appending</h3>
+
+<p>Appending to assets is only slightly more involved. Appending is used when you want to add to the end of a particular text file without getting rid of what’s already there.</p>
+
+<p>For example, using the above method on <code class="language-plaintext highlighter-rouge">introText.txt</code> will get rid of the base game’s intro text values, as well as any that other mods may have added. This may or may not be what you want. Appending will put your values at the end of the file for other mods to add to.</p>
+
+<p>To perform asset appending, place the assets in the relevant subfolder under the <code class="language-plaintext highlighter-rouge">_append</code> folder, like so. Note the underscore before it.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;modRoot&gt; (name this anything)
+|- _polymod_meta.json
+|- _append
+  |- data
+    |- introText.txt
+    |- freeplaySonglist.txt
+</code></pre></div></div>
+
+<p>Some tips:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">freeplaySonglist.txt</code> now uses song IDs (aka the name of the song directory, which has no spaces or symbols) to identify the songs in Free Play and the order they appear.</li>
+  <li>If you use the <code class="language-plaintext highlighter-rouge">Adding and Replacing</code> method above to add a new song to the game, it won’t appear in the Free Play song list unless you append its ID, character icon, and week number to <code class="language-plaintext highlighter-rouge">freeplaySonglist.txt</code>.</li>
+</ul>
+
+<h3 id="merging">Merging</h3>
+
+<p>Merging is the most powerful yet the most convoluted method. Use it only if you can’t use replacement or appending.</p>
+
+<p>Merging locates a given key in a file and replaces it with the intended value.</p>
+
+<ul>
+  <li>For <code class="language-plaintext highlighter-rouge">CSV</code> and <code class="language-plaintext highlighter-rouge">TSV</code> files, the value in the first column is assumed to be the ID. Each ID in the merge CSV is located in the base CSV, and that row is replaced with the row from the merge CSV.</li>
+  <li>For <code class="language-plaintext highlighter-rouge">LINES</code> text files, Polymod will use the first line as the pattern to check for, it will look it, and insert the other lines of the merge file after that one, before continuing with the rest of the file. <code class="language-plaintext highlighter-rouge">.txt</code> files use the <code class="language-plaintext highlighter-rouge">LINES</code> format by default. For example, if the base file reads:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ABC
+DEF
+GHI
+</code></pre></div>    </div>
+    <p>And the merge file reads:</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DEF
+123
+</code></pre></div>    </div>
+    <p>The merged file will look like:</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ABC
+DEF
+123
+GHI
+</code></pre></div>    </div>
+  </li>
+  <li>For <code class="language-plaintext highlighter-rouge">PLAINTEXT</code> text files, Polymod will throw a warning that merging is not supported.</li>
+  <li>For <code class="language-plaintext highlighter-rouge">XML</code> files, you need to add a child key called <code class="language-plaintext highlighter-rouge">merge</code> which specifies the key and value to match on. All other values will be replaced. <a href="https://github.com/larsiusprime/polymod#_merge-folder">See here for more info</a>.</li>
+  <li>For <code class="language-plaintext highlighter-rouge">JSON</code> files, create a single top-level array named <code class="language-plaintext highlighter-rouge">merge</code>. Each element is an object with two keys: A key <code class="language-plaintext highlighter-rouge">target</code> like <code class="language-plaintext highlighter-rouge">abc.d[3].e</code>, and a value to insert <code class="language-plaintext highlighter-rouge">payload</code>. <a href="https://github.com/larsiusprime/polymod#_merge-folder">See here for more info</a>.</li>
+</ul>
+
+<h2 id="modpacks">Modpacks</h2>
+
+<p>To create a modpack, make a mod containing a <code class="language-plaintext highlighter-rouge">_polymod_pack.txt</code> file with the following text:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>foo:1.0.0,bar:1.*.*,abc,xyz
+</code></pre></div></div>
+
+<p>ModCore will search for, and load, the mods with the IDs <code class="language-plaintext highlighter-rouge">foo</code>, <code class="language-plaintext highlighter-rouge">bar</code>, <code class="language-plaintext highlighter-rouge">abc</code>, and <code class="language-plaintext highlighter-rouge">xyz</code>, in that order. It will fail any mods that fail the version check (<code class="language-plaintext highlighter-rouge">foo</code> must be exactly <code class="language-plaintext highlighter-rouge">1.0.0</code> while <code class="language-plaintext highlighter-rouge">bar</code> allows any <code class="language-plaintext highlighter-rouge">1.x</code> version) and only load the mods which don’t fail.</p>
+
+<h2 id="scripts">Scripts</h2>
+
+<p>Coming soon…</p>
+
+<h2 id="distributing-mods">Distributing Mods</h2>
+
+<p>The ideal means of distributing a mod is by creating a mod folder and distributing it, so that users can download Enigma Engine and install the mod themselves (or, in the future, use a tool that helps them do that).</p>
+
+<p>However, if you are still set on distributing your mod as a standalone executable, here are the steps to follow for that:</p>
+
+<ul>
+  <li>Follow the guide at <a href="https://github.com/EnigmaEngine/EnigmaEngine/wiki/building-enigma-engine">Building Enigma Engine</a> and clone the <code class="language-plaintext highlighter-rouge">stable</code> branch.</li>
+  <li>Develop your mod using the standard method with the mods folder, since that has better debugging.</li>
+  <li>Go to <code class="language-plaintext highlighter-rouge">Enigma.hx</code> and change the static variable <code class="language-plaintext highlighter-rouge">ENABLE_MODS</code> to false. This disables all of the behavior related to mods without having to perform messy code cleanup.</li>
+  <li>Install your mod data directly into the <code class="language-plaintext highlighter-rouge">assets</code> folder. Add any files you want to add, replace any files you want to replace, directly modify or append any files you want to change.
+    <ul>
+      <li>Remember that main menu assets and song charts go into the <code class="language-plaintext highlighter-rouge">preload</code> directory.</li>
+    </ul>
+  </li>
+  <li>If you want to remove the basic weeks, modify <code class="language-plaintext highlighter-rouge">data/freeplaySongList</code> to remove them from free play, and modify the week data file to remove those weeks from story mode.
+    <ul>
+      <li>You can also delete any files in <code class="language-plaintext highlighter-rouge">music</code>, data files in <code class="language-plaintext highlighter-rouge">data/songs</code>, or asset files that you know are only used by those weeks.</li>
+    </ul>
+  </li>
+  <li>Build, test, and distribute that.</li>
+</ul>
+
+<p>Although this method of creating mods is not the preferred method (ideally you can distribute mods in both formats for the purposes of forwards compatibility) it is still officially endorsed, and you may create issues and bug reports related to it.</p>
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+  </body>
+</html>

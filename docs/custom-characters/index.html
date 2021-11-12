@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,maximum-scale=2">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/style.css?v=83aa5cf22049aedb288d193c8cd5cbb9aeed959a">
+
+    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Enigma Engine | A special repository to host the Github.io page.</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Enigma Engine" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A special repository to host the Github.io page." />
+<meta property="og:description" content="A special repository to host the Github.io page." />
+<link rel="canonical" href="https://enigmaengine.github.io/docs/custom-characters/" />
+<meta property="og:url" content="https://enigmaengine.github.io/docs/custom-characters/" />
+<meta property="og:site_name" content="Enigma Engine" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Enigma Engine" />
+<script type="application/ld+json">
+{"url":"https://enigmaengine.github.io/docs/custom-characters/","description":"A special repository to host the Github.io page.","@type":"WebPage","headline":"Enigma Engine","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <!-- TODO: Change this to latest release -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a id="home_banner" href="/">Home</a>
+
+
+<a id="issue_banner" href="https://github.com/EnigmaEngine/EnigmaEngine.github.io/issues">Report an Issue</a>
+
+<img
+    id="header-logo"
+    src="https://raw.githubusercontent.com/EnigmaEngine/EnigmaEngine/stable/art/EnigmaEngineFont.png"
+    alt="Enigma Engine" />
+
+/docs/custom-characters/
+
+
+<!-- This is auto-populated from the Github repo! -->
+
+    <section id="downloads">
+        <div id="release"><a href="/changelog"></a></span></div>
+        
+        
+        
+                
+    </section>
+
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        
+<div id="toc" class="sidebar">
+
+
+<h2>Documentation</h2>
+
+<ul>
+  <li>
+    <a href="/docs/installing">Installing Enigma Engine</a>
+    <ul>
+      <li>
+        <a href="/docs/adding-mods">Add and Configure Mods</a>
+      </li>
+      <li>
+        <a href="/docs/mod-showcase">Mod Showcase</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="/docs/modding-basics">Modding Basics</a>
+    <ul>
+        <li>
+          <a href="/docs/custom-characters">Custom Characters</a>
+        </li>
+        <ul>
+          <li>
+            <a href="/docs/custom-health-icons">Custom Health Icons</a>
+          </li>
+        </ul>
+        <li>
+          <a href="/docs/custom-songs">Custom Songs</a>
+        </li>
+        <li>
+          <a href="/docs/custom-stages">Custom Stages</a>
+        </li>
+        <li>
+          <a href="/docs/custom-story-weeks">Custom Story Weeks</a>
+        </li>
+        <li>
+          <a href="/docs/custom-title-screen">Custom Title Screen</a>
+        </li>
+    </ul>
+  </li>
+  <li>
+    <a href="/docs/design-philosophy">Design Philosophy</a>
+  </li>
+  <li>
+    Technical Information
+    <ul>
+      <li><a href="/docs/building-from-source">Building from Source</a></li>
+      <li><a href="/docs/development-tools">Development Tools</a></li>
+      <li><a href="/docs/build-troubleshooting">Build Troubleshooting</a></li>
+      <li>
+        <a href="/docs/animation-format">Animation File Format (Sparrow v2)</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+</div>
+
+<h1 id="modding-basics-custom-characters">Modding Basics: Custom Characters</h1>
+
+<p>You can create custom characters to use in songs without having to modify the code. You can also replace the default characters with your own custom skins, even ones that are larger or smaller than the vanilla sprites, without having to worry about broken offsets or mismatched animations.</p>
+
+<p>To add a character using a mod, follow these steps:
+• Follow the <a href="/docs/modding-basics">Modding Basics</a> guide to create a basic mod.
+• Create a shared/images/characters folder within 
+• Create a data/characters folder within your mod directory, and create a <charid>.json file within that directory.
+• Copy the text in the Template section below, and adapt it to your character.</charid></p>
+
+<h2 id="important-notes">Important Notes</h2>
+
+<p>• No other steps are needed to “register” your character; when the game loads a song, it will simply look for a data file for the provided character ID.
+• A character ID should be all alphanumeric characters and dashes.
+• You can create a skin for an existing character, or even one for a character added by another mod, by creating a character data file with the same name in your mod.
+• A single mod can add as many characters or skins as desired.</p>
+
+<h2 id="template">Template</h2>
+
+<p>Here is the <code class="language-plaintext highlighter-rouge">bf.json</code> character file as an example. The character file specifies basic information about the character (such as what asset file to use) as well as information about each of the animations used.</p>
+
+<div class="language-jsonc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Boyfriend"</span><span class="p">,</span><span class="w"> </span><span class="c1">// The readable name of the character</span><span class="w">
+  </span><span class="nl">"isGF"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="c1">// If the character is a girlfriend or not</span><span class="w">
+  </span><span class="nl">"flipX"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="c1">// If the character should be flipped horizontally</span><span class="w">
+  </span><span class="nl">"flipY"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="c1">// If the character should be flipped vertically</span><span class="w">
+  </span><span class="nl">"asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"characters/BOYFRIEND"</span><span class="p">,</span><span class="w"> </span><span class="c1">// The asset file to use for the character</span><span class="w">
+  </span><span class="nl">"barColor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#31B0D1"</span><span class="p">,</span><span class="w"> </span><span class="c1">// The color of the health bar for the character</span><span class="w">
+  </span><span class="nl">"startingAnim"</span><span class="p">:</span><span class="w"> </span><span class="s2">"idle"</span><span class="p">,</span><span class="w"> </span><span class="c1">// The animation to play when the character is first loaded</span><span class="w">
+  </span><span class="nl">"isPixel"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="c1">// When true, forcibly disable anti-aliasing so that pixel art characters look correct</span><span class="w">
+  </span><span class="nl">"scale"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="c1">// Multiplier for the character's size. Use 1 for default size and 6 for pixel art.</span><span class="w">
+  </span><span class="nl">"atlasType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sparrow"</span><span class="p">,</span><span class="w"> </span><span class="c1">// The atlas type to use for the character. Use "sparrow" for default atlas and "packer" for a packer atlas (currently only used on Spirit).</span><span class="w">
+  </span><span class="nl">"animations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"idle"</span><span class="p">,</span><span class="w"> </span><span class="c1">// The name the game uses for this animation</span><span class="w">
+      </span><span class="nl">"prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BF idle dance"</span><span class="p">,</span><span class="w"> </span><span class="c1">// The prefix to reference in the XML for this sprite sheet</span><span class="w">
+      </span><span class="nl">"offsets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">-5</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="c1">// The x and y offset relative to the other animations.</span><span class="w">
+      </span><span class="nl">"looped"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="c1">// If the animation should loop</span><span class="w">
+      </span><span class="nl">"flipX"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="c1">// If the animation should be flipped horizontally</span><span class="w">
+      </span><span class="nl">"flipY"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="c1">// If the animation should be flipped vertically</span><span class="w">
+      </span><span class="nl">"frameRate"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w"> </span><span class="c1">// The frame rate of the animation</span><span class="w">
+      </span><span class="nl">"frameIndices"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w"> </span><span class="c1">// The frame indices to use for this animation. If empty, use all frames with the given prefix.</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"singUP"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BF NOTE UP0"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"offsets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">-29</span><span class="p">,</span><span class="w"> </span><span class="mi">27</span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"singLEFT"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BF NOTE LEFT0"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"offsets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="mi">-6</span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"singRIGHT"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BF NOTE RIGHT0"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"offsets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">-38</span><span class="p">,</span><span class="w"> </span><span class="mi">-7</span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"singDOWN"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BF NOTE DOWN0"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"offsets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">-10</span><span class="p">,</span><span class="w"> </span><span class="mi">-50</span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"singUPmiss"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BF NOTE UP MISS"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"offsets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">-29</span><span class="p">,</span><span class="w"> </span><span class="mi">27</span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"singLEFTmiss"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BF NOTE LEFT MISS"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"offsets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="mi">24</span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"singRIGHTmiss"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BF NOTE RIGHT MISS"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"offsets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">-30</span><span class="p">,</span><span class="w"> </span><span class="mi">21</span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"singDOWNmiss"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BF NOTE DOWN MISS"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"offsets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">-11</span><span class="p">,</span><span class="w"> </span><span class="mi">-19</span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hey"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BF HEY"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"offsets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"firstDeath"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BF dies"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"offsets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">37</span><span class="p">,</span><span class="w"> </span><span class="mi">11</span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"deathLoop"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BF Dead Loop"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"offsets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">37</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">]</span><span class="w">
+    
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"deathConfirm"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BF Dead confirm"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"offsets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">37</span><span class="p">,</span><span class="w"> </span><span class="mi">69</span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scared"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BF idle shaking"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"offsets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">-4</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+  </body>
+</html>
