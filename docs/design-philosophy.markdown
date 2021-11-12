@@ -21,7 +21,7 @@ The modding system provides a system of script hooks, FAR more powerful than Lua
 
 * **Free, open source software**
 
-Enigma Engine is free, open source software, and should be available to anyone who wants to make a rhythm game mod or use it for their personal projects. In the spirit of open source, Enigma Engine is distributed under the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html).
+Enigma Engine is free, open source software, and should be available to anyone who wants to make a rhythm game mod or use it for their personal projects. In the spirit of open source, Enigma Engine is distributed under the [Apache 2.0 license](https://www.apache.org/licenses/LICENSE-2.0).
 
 [Contributions](https://github.com/EnigmaEngine/EnigmaEngine/pulls) and [bug reports](https://github.com/EnigmaEngine/EnigmaEngine/issues) are welcome, and we will to respond to them as quickly as possible.
 
