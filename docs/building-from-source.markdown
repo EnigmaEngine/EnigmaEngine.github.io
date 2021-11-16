@@ -26,7 +26,6 @@ You will need to install the following dependencies:
     * On Windows and MacOS platforms, you can download this from [git-scm](https://git-scm.com/downloads).
     * On Linux platforms, use the package manager for your distro. If you're on Ubuntu, run `sudo apt install git`. If you're not on Ubuntu, you already know how to install Git.
 * Haxe (Latest Version)
-    * If you're already using 4.1.5, that should work fine, but the 4.2.x versions are also fully compatible.
     * On Windows and MacOS, you can download Haxe from [haxe.org](https://haxe.org/download/).
     * On Linux, the setup script will install Haxe for you. See [Running the Setup Script](#running-the-setup-script) below.
 
